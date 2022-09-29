@@ -1,0 +1,58 @@
+=================
+version statement
+=================
+\version "2.2"
+
+---
+
+(source_file
+  (version (string)))
+
+===============
+block statement
+===============
+{
+  c
+}
+
+---
+
+(source_file
+  (block))
+
+
+===============
+command statement
+===============
+\relative {
+  c
+}
+
+---
+
+(source_file
+      (command
+        (command_identifier)
+        (block)))
+
+
+
+===============
+command inline
+===============
+\language "english"
+\relative {
+  do' re mi
+}
+
+---
+
+(source_file
+      (command
+        (command_identifier)
+        (string))
+      (command
+        (command_identifier)
+        (block)))
+
+
