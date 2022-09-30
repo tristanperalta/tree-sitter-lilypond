@@ -4,7 +4,8 @@
   "description": "",
   "main": "bindings/node",
   "scripts": {
-    "test": "tree-sitter test"
+    "test": "tree-sitter test",
+    "gen": "tree-sitter generate"
   },
   "author": "Tristan Peralta",
   "license": "ISC",
@@ -14,13 +15,12 @@
   "devDependencies": {
     "tree-sitter-cli": "^0.20.7"
   },
-  "tree-sitter": {
-    "scope": "source.ly",
-    "file-types": [
-      "ly"
-    ],
-    "highlights": [
-      "queries/highlight.scm"
-    ]
-  }
+  "tree-sitter": [
+    {
+      "scope": "source.ly",
+      "file-types": [
+        "ly"
+      ]
+    }
+  ]
 }
