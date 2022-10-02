@@ -17,7 +17,7 @@
           "named": true
         },
         {
-          "type": "command_identifier",
+          "type": "identifier",
           "named": true
         },
         {
@@ -89,11 +89,11 @@
     "named": false
   },
   {
-    "type": "command_identifier",
+    "type": "comment_statement",
     "named": true
   },
   {
-    "type": "comment_statement",
+    "type": "identifier",
     "named": true
   },
   {

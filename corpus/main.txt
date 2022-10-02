@@ -34,8 +34,9 @@ command statement
 (source_file
   (statement
     (command
-      (command_identifier)
+      (identifier)
       (block))))
+
 
 ===============
 command inline
@@ -50,27 +51,14 @@ command inline
 (source_file
   (statement
     (command
-      (command_identifier)
+      (identifier)
       (string))
   )
   (statement
       (command
-        (command_identifier)
+        (identifier)
         (block)))
   )
-
-=================
-comment statement
-=================
-\version "2.2"
-% this is a comment
-
----
-
-(source_file
-  (statement (version_statement (string)))
-  (statement (comment_statement))
-)
 
 =================
 header block
@@ -85,6 +73,6 @@ header block
 
 (source_file
   (statement (version_statement (string)))
-  (statement (command (command_identifier) (block)))
+  (statement (command (identifier) (block)))
 )
 
