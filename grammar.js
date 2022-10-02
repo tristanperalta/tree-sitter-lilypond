@@ -16,7 +16,9 @@ module.exports = grammar({
     ),
 
     block: $ => seq(
-      "{", /.+/, "}"
+      "{",
+      repeat(/.+/),
+      "}"
     ),
 
     command: $ => seq(

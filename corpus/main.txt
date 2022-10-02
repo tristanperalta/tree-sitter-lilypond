@@ -71,3 +71,20 @@ comment statement
   (statement (version_statement (string)))
   (statement (comment_statement))
 )
+
+=================
+header block
+=================
+\version "2.2"
+\header {
+  title = "SUITE I."
+  composer = "J. S. Bach."
+}
+
+---
+
+(source_file
+  (statement (version_statement (string)))
+  (statement (command (command_identifier) (block)))
+)
+
