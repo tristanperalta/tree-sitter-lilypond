@@ -85,6 +85,10 @@
     }
   },
   {
+    "type": "\\",
+    "named": false
+  },
+  {
     "type": "\\version",
     "named": false
   },

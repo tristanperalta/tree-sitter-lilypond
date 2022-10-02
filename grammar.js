@@ -22,11 +22,12 @@ module.exports = grammar({
     ),
 
     command: $ => seq(
+      "\\",
       $.identifier,
       choice($.block, $.string)
     ),
 
-    identifier: $ => token(seq("\\", /[^ ]+/)),
+    identifier: $ => /[^ ]+/,
 
     comment_statement: $ => token(choice(
       seq("%", /.*/),

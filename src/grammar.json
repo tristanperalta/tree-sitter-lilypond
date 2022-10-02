@@ -71,6 +71,10 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "STRING",
+          "value": "\\"
+        },
+        {
           "type": "SYMBOL",
           "name": "identifier"
         },
@@ -90,20 +94,8 @@
       ]
     },
     "identifier": {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "\\"
-          },
-          {
-            "type": "PATTERN",
-            "value": "[^ ]+"
-          }
-        ]
-      }
+      "type": "PATTERN",
+      "value": "[^ ]+"
     },
     "comment_statement": {
       "type": "TOKEN",
