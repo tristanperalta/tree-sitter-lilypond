@@ -37,8 +37,13 @@
           "value": "\\version"
         },
         {
-          "type": "SYMBOL",
-          "name": "string"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          },
+          "named": true,
+          "value": "version_number"
         }
       ]
     },

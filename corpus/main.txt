@@ -7,7 +7,7 @@ version statement
 
 (source_file
   (statement
-    (version_statement (string))))
+    (version_statement (version_number))))
 
 ===============
 block statement
@@ -72,7 +72,7 @@ header block
 ---
 
 (source_file
-  (statement (version_statement (string)))
+  (statement (version_statement (version_number)))
   (statement (command (identifier) (block)))
 )
 

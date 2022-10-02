@@ -9,12 +9,12 @@
 #define STATE_COUNT 15
 #define LARGE_STATE_COUNT 4
 #define SYMBOL_COUNT 15
-#define ALIAS_COUNT 0
+#define ALIAS_COUNT 1
 #define TOKEN_COUNT 8
 #define EXTERNAL_TOKEN_COUNT 0
 #define FIELD_COUNT 0
 #define MAX_ALIAS_SEQUENCE_LENGTH 3
-#define PRODUCTION_ID_COUNT 1
+#define PRODUCTION_ID_COUNT 2
 
 enum {
   anon_sym_BSLASHversion = 1,
@@ -31,6 +31,7 @@ enum {
   sym_command = 12,
   aux_sym_source_file_repeat1 = 13,
   aux_sym_block_repeat1 = 14,
+  alias_sym_version_number = 15,
 };
 
 static const char * const ts_symbol_names[] = {
@@ -49,6 +50,7 @@ static const char * const ts_symbol_names[] = {
   [sym_command] = "command",
   [aux_sym_source_file_repeat1] = "source_file_repeat1",
   [aux_sym_block_repeat1] = "block_repeat1",
+  [alias_sym_version_number] = "version_number",
 };
 
 static const TSSymbol ts_symbol_map[] = {
@@ -67,6 +69,7 @@ static const TSSymbol ts_symbol_map[] = {
   [sym_command] = sym_command,
   [aux_sym_source_file_repeat1] = aux_sym_source_file_repeat1,
   [aux_sym_block_repeat1] = aux_sym_block_repeat1,
+  [alias_sym_version_number] = alias_sym_version_number,
 };
 
 static const TSSymbolMetadata ts_symbol_metadata[] = {
@@ -130,10 +133,17 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = false,
     .named = false,
   },
+  [alias_sym_version_number] = {
+    .visible = true,
+    .named = true,
+  },
 };
 
 static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE_LENGTH] = {
   [0] = {0},
+  [1] = {
+    [1] = alias_sym_version_number,
+  },
 };
 
 static const uint16_t ts_non_terminal_alias_map[] = {
@@ -479,8 +489,8 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [26] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2), SHIFT_REPEAT(4),
   [29] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_statement, 1),
   [31] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_statement, 1),
-  [33] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_version_statement, 2),
-  [35] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_version_statement, 2),
+  [33] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_version_statement, 2, .production_id = 1),
+  [35] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_version_statement, 2, .production_id = 1),
   [37] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_block, 2),
   [39] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_block, 2),
   [41] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_command, 2),

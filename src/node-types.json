@@ -78,7 +78,7 @@
       "required": true,
       "types": [
         {
-          "type": "string",
+          "type": "version_number",
           "named": true
         }
       ]
@@ -98,6 +98,10 @@
   },
   {
     "type": "string",
+    "named": true
+  },
+  {
+    "type": "version_number",
     "named": true
   },
   {

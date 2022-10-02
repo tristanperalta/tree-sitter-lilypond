@@ -12,7 +12,7 @@ module.exports = grammar({
 
     version_statement: $ => seq(
       "\\version",
-      $.string,
+      alias($.string, $.version_number),
     ),
 
     block: $ => seq(
