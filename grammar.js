@@ -2,14 +2,15 @@ module.exports = grammar({
   name: "lilypond",
 
   rules: {
-    source_file: $ => choice(
-      $.version,
-      repeat(
-        choice($.block, $.command)
-      )
+    source_file: $ => repeat($.statement),
+    statement: $ => choice(
+      $.version_statement,
+      $.comment_statement,
+      $.block,
+      $.command
     ),
 
-    version: $ => seq(
+    version_statement: $ => seq(
       "\\version",
       $.string,
     ),
@@ -24,6 +25,8 @@ module.exports = grammar({
     ),
 
     command_identifier: $ => /\\[^ ]+/,
+
+    comment_statement: $ => /% .+/,
 
     string: $ => /".+"/
   }

@@ -6,7 +6,8 @@ version statement
 ---
 
 (source_file
-  (version (string)))
+  (statement
+    (version_statement (string))))
 
 ===============
 block statement
@@ -18,7 +19,7 @@ block statement
 ---
 
 (source_file
-  (block))
+  (statement (block)))
 
 
 ===============
@@ -31,11 +32,10 @@ command statement
 ---
 
 (source_file
-      (command
-        (command_identifier)
-        (block)))
-
-
+  (statement
+    (command
+      (command_identifier)
+      (block))))
 
 ===============
 command inline
@@ -48,11 +48,26 @@ command inline
 ---
 
 (source_file
-      (command
-        (command_identifier)
-        (string))
+  (statement
+    (command
+      (command_identifier)
+      (string))
+  )
+  (statement
       (command
         (command_identifier)
         (block)))
+  )
 
+=================
+comment statement
+=================
+\version "2.2"
+% this is a comment
 
+---
+
+(source_file
+  (statement (version_statement (string)))
+  (statement (comment_statement))
+)

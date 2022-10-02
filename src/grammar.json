@@ -2,31 +2,34 @@
   "name": "lilypond",
   "rules": {
     "source_file": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "statement"
+      }
+    },
+    "statement": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "version"
+          "name": "version_statement"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "block"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "command"
-              }
-            ]
-          }
+          "type": "SYMBOL",
+          "name": "comment_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "command"
         }
       ]
     },
-    "version": {
+    "version_statement": {
       "type": "SEQ",
       "members": [
         {
@@ -81,6 +84,10 @@
     "command_identifier": {
       "type": "PATTERN",
       "value": "\\\\[^ ]+"
+    },
+    "comment_statement": {
+      "type": "PATTERN",
+      "value": "% .+"
     },
     "string": {
       "type": "PATTERN",
