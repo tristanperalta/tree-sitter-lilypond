@@ -1,25 +1,62 @@
 [
   {
-    "type": "block",
+    "type": "ETC",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "FRACTION",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SCM_TOKEN",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "any",
     "named": true,
     "fields": {}
   },
   {
-    "type": "command",
+    "type": "assignment",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "block",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
         {
           "type": "string",
           "named": true
@@ -28,7 +65,260 @@
     }
   },
   {
-    "type": "source_file",
+    "type": "block",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "book_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "book_body",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "book_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "SCM_TOKEN",
+          "named": true
+        },
+        {
+          "type": "book_body",
+          "named": true
+        },
+        {
+          "type": "bookpart_block",
+          "named": true
+        },
+        {
+          "type": "composite_music",
+          "named": true
+        },
+        {
+          "type": "embedded_scm_active",
+          "named": true
+        },
+        {
+          "type": "error",
+          "named": true
+        },
+        {
+          "type": "full_markup",
+          "named": true
+        },
+        {
+          "type": "full_markup_list",
+          "named": true
+        },
+        {
+          "type": "paper_block",
+          "named": true
+        },
+        {
+          "type": "score_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "bookpart_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "bookpart_body",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "bookpart_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "SCM_TOKEN",
+          "named": true
+        },
+        {
+          "type": "bookpart_body",
+          "named": true
+        },
+        {
+          "type": "composite_music",
+          "named": true
+        },
+        {
+          "type": "embedded_scm_active",
+          "named": true
+        },
+        {
+          "type": "error",
+          "named": true
+        },
+        {
+          "type": "full_markup",
+          "named": true
+        },
+        {
+          "type": "full_markup_list",
+          "named": true
+        },
+        {
+          "type": "paper_block",
+          "named": true
+        },
+        {
+          "type": "score_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "composite_music",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "context_def_spec_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "context_modification",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "embedded_scm",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "embedded_scm_active",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "error",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "full_markup",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "full_markup_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "header_block",
     "named": true,
     "fields": {},
     "children": {
@@ -36,14 +326,29 @@
       "required": false,
       "types": [
         {
-          "type": "statement",
+          "type": "lilypond_header_body",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "statement",
+    "type": "lilypond",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "top_level_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lilypond_header_body",
     "named": true,
     "fields": {},
     "children": {
@@ -51,26 +356,14 @@
       "required": true,
       "types": [
         {
-          "type": "block",
-          "named": true
-        },
-        {
-          "type": "command",
-          "named": true
-        },
-        {
-          "type": "comment_statement",
-          "named": true
-        },
-        {
-          "type": "version_statement",
+          "type": "assignment",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "version_statement",
+    "type": "music",
     "named": true,
     "fields": {},
     "children": {
@@ -78,14 +371,261 @@
       "required": true,
       "types": [
         {
-          "type": "version_number",
+          "type": "any",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "music_assign",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "number_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "number_expression",
+          "named": true
+        },
+        {
+          "type": "number_term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "number_factor",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "bare_number",
+          "named": true
+        },
+        {
+          "type": "number_factor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "number_term",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "number_factor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "output_def",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "paper_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "partial_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "partial_markup",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pitch_or_music",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "score_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "score_body",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "score_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "error",
+          "named": true
+        },
+        {
+          "type": "score_body",
+          "named": true
+        },
+        {
+          "type": "score_items",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "score_items",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "any",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "top_level_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "header_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
   },
   {
     "type": "\\",
+    "named": false
+  },
+  {
+    "type": "\\book",
+    "named": false
+  },
+  {
+    "type": "\\bookpart",
+    "named": false
+  },
+  {
+    "type": "\\header",
+    "named": false
+  },
+  {
+    "type": "\\score",
     "named": false
   },
   {
@@ -93,7 +633,7 @@
     "named": false
   },
   {
-    "type": "comment_statement",
+    "type": "bare_number",
     "named": true
   },
   {

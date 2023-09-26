@@ -1,78 +1,21 @@
 =================
-version statement
-=================
-\version "2.2"
-
----
-
-(source_file
-  (statement
-    (version_statement (version_number))))
-
-===============
-block statement
-===============
-{
-  c
-}
-
----
-
-(source_file
-  (statement (block)))
-
-
-===============
-command statement
-===============
-\relative {
-  c
-}
-
----
-
-(source_file
-  (statement
-    (command
-      (identifier)
-      (block))))
-
-
-===============
-command inline
-===============
-\language "english"
-\relative {
-  do' re mi
-}
-
----
-
-(source_file
-  (statement
-    (command
-      (identifier)
-      (string))
-  )
-  (statement
-      (command
-        (identifier)
-        (block)))
-  )
-
-=================
 header block
 =================
-\version "2.2"
 \header {
   title = "SUITE I."
   composer = "J. S. Bach."
 }
 
 ---
-
-(source_file
-  (statement (version_statement (version_number)))
-  (statement (command (identifier) (block)))
+(lilypond
+  (top_level_expression
+    (header_block
+      (lilypond_header_body
+        (assignment (string))
+      )
+      (lilypond_header_body
+        (assignment (string))
+      )
+    )
+  )
 )
-

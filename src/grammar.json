@@ -1,33 +1,736 @@
 {
   "name": "lilypond",
   "rules": {
-    "source_file": {
+    "lilypond": {
       "type": "REPEAT",
       "content": {
         "type": "SYMBOL",
-        "name": "statement"
+        "name": "top_level_expression"
       }
     },
-    "statement": {
+    "top_level_expression": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "version_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "comment_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "block"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "command"
+          "name": "header_block"
         }
       ]
+    },
+    "header_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\header"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "lilypond_header_body"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "lilypond_header_body": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "assignment"
+        }
+      ]
+    },
+    "assignment": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "\\w+"
+            },
+            {
+              "type": "STRING",
+              "value": "="
+            },
+            {
+              "type": "SYMBOL",
+              "name": "string"
+            }
+          ]
+        }
+      ]
+    },
+    "assignment_id": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
+    },
+    "identifier_init": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "number_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        }
+      ]
+    },
+    "identifier_init_nonumber": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "header_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "score_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "book_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "bookpart_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "output_def"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "context_def_spec_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "music_assign"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pitch_or_music"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "FRACTION"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "embedded_scm"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "partial_markup"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "full_markup_list"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "context_modification"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "partial_function"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ETC"
+            }
+          ]
+        }
+      ]
+    },
+    "BOOK_IDENTIFIER": {
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SYMBOL",
+        "name": "any"
+      }
+    },
+    "book_block": {
+      "type": "PREC",
+      "value": 50,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\\book"
+          },
+          {
+            "type": "STRING",
+            "value": "{"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "book_body"
+          },
+          {
+            "type": "STRING",
+            "value": "}"
+          }
+        ]
+      }
+    },
+    "book_body": {
+      "type": "PREC",
+      "value": 49,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "book_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "paper_block"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "book_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "bookpart_block"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "book_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "score_block"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "book_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "composite_music"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "book_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "full_markup"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "book_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "full_markup_list"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "book_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "SCM_TOKEN"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "book_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "embedded_scm_active"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "book_body"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "book_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "error"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bookpart_block": {
+      "type": "PREC",
+      "value": 48,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\\bookpart"
+          },
+          {
+            "type": "STRING",
+            "value": "{"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "bookpart_body"
+          },
+          {
+            "type": "STRING",
+            "value": "}"
+          }
+        ]
+      }
+    },
+    "bookpart_body": {
+      "type": "PREC",
+      "value": 49,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "bookpart_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "paper_block"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "bookpart_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "score_block"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "bookpart_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "composite_music"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "bookpart_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "full_markup"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "bookpart_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "full_markup_list"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "bookpart_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "SCM_TOKEN"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "bookpart_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "embedded_scm_active"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "bookpart_body"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "error"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "score_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\score"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "score_body"
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "score_body": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "score_items"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "score_body"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "error"
+            }
+          ]
+        }
+      ]
+    },
+    "score_items": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "score_item": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "embedded_scm"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "music"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "output_def"
+        }
+      ]
+    },
+    "number_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "number_expression"
+            },
+            {
+              "type": "STRING",
+              "value": "+"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "number_term"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "number_expression"
+            },
+            {
+              "type": "STRING",
+              "value": "-"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "number_term"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number_term"
+        }
+      ]
+    },
+    "number_term": {
+      "type": "PREC",
+      "value": 5,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "number_factor"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "number_factor"
+              },
+              {
+                "type": "STRING",
+                "value": "*"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "number_factor"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "number_factor"
+              },
+              {
+                "type": "STRING",
+                "value": "/"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "number_factor"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "number_factor": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "number_factor"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "bare_number"
+        }
+      ]
+    },
+    "bare_number": {
+      "type": "PATTERN",
+      "value": "[0-9]+"
+    },
+    "composite_music": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "full_markup": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "full_markup_list": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "SCM_TOKEN": {
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "SYMBOL",
+        "name": "any"
+      }
+    },
+    "embedded_scm_active": {
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SYMBOL",
+        "name": "any"
+      }
+    },
+    "embedded_scm": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "output_def": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "property_path": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "markup_mode_word": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "symbol_list_part_bare": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "partial_function": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "ETC": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "context_def_spec_block": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "music_assign": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "pitch_or_music": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "FRACTION": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "partial_markup": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "context_modification": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "paper_block": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "error": {
+      "type": "SYMBOL",
+      "name": "any"
+    },
+    "music": {
+      "type": "SYMBOL",
+      "name": "any"
     },
     "version_statement": {
       "type": "SEQ",
@@ -123,11 +826,8 @@
                 "value": "%{"
               },
               {
-                "type": "REPEAT",
-                "content": {
-                  "type": "PATTERN",
-                  "value": ".*"
-                }
+                "type": "STRING",
+                "value": "t"
               },
               {
                 "type": "STRING",
@@ -141,6 +841,10 @@
     "string": {
       "type": "PATTERN",
       "value": "\".+\""
+    },
+    "any": {
+      "type": "PATTERN",
+      "value": ".+"
     }
   },
   "extras": [
