@@ -11,10 +11,8 @@ header block
   (top_level_expression
     (header_block
       (lilypond_header_body
-        (assignment (string))
-      )
-      (lilypond_header_body
-        (assignment (string))
+        (assignment (assignment_id) (string))
+        (assignment (assignment_id) (string))
       )
     )
   )

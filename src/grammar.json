@@ -29,11 +29,8 @@
           "value": "{"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "lilypond_header_body"
-          }
+          "type": "SYMBOL",
+          "name": "lilypond_header_body"
         },
         {
           "type": "STRING",
@@ -42,13 +39,16 @@
       ]
     },
     "lilypond_header_body": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "assignment"
-        }
-      ]
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "assignment"
+          }
+        ]
+      }
     },
     "assignment": {
       "type": "CHOICE",
@@ -57,8 +57,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "PATTERN",
-              "value": "\\w+"
+              "type": "SYMBOL",
+              "name": "assignment_id"
             },
             {
               "type": "STRING",
@@ -73,13 +73,11 @@
       ]
     },
     "assignment_id": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        }
-      ]
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "\\w+"
+      }
     },
     "identifier_init": {
       "type": "CHOICE",

@@ -32,26 +32,23 @@ module.exports = grammar({
     ),
 
     header_block: $ => seq(
-      "\\header", "{", repeat($.lilypond_header_body), "}"
+      "\\header", "{", $.lilypond_header_body, "}"
     ),
 
-    lilypond_header_body: $ => choice(
+    lilypond_header_body: $ => repeat1(choice(
       $.assignment,
       //$.SCM_TOKEN,
       //$.embedded_scm_active
-    ),
+    )),
 
     assignment: $ => choice(
-      seq(/\w+/, '=', $.string)
+      seq($.assignment_id, '=', $.string)
       //seq($.assignment_id, '=', $.identifier_init),
       //seq($.assignment_id, '.', $.property_path, '=', $.identifier_init),
       //seq($.markup_mode_word, '=', $.identifier_init)
     ),
 
-    assignment_id: $ => choice(
-      $.identifier,
-      // $.symbol
-    ),
+    assignment_id: $ => token(/\w+/),
 
     identifier_init: $ => choice(
       //$.identifier_init_nonumber,

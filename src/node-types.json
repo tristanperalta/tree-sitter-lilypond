@@ -54,9 +54,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "assignment_id",
+          "named": true
+        },
         {
           "type": "string",
           "named": true
@@ -322,8 +326,8 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
           "type": "lilypond_header_body",
@@ -352,7 +356,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -631,6 +635,10 @@
   {
     "type": "\\version",
     "named": false
+  },
+  {
+    "type": "assignment_id",
+    "named": true
   },
   {
     "type": "bare_number",
