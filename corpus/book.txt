@@ -1,0 +1,42 @@
+=================
+header book multi
+=================
+\version "2.16.0"
+
+\header {
+  texidoc="A second book-level header block and headers nested in bookpart and score should not clear values from the first header block.  This score should show composer, piece, subtitle and title."
+}
+
+\book {
+  \header {
+    title = "Title incorrect (to be superseded at book level)"
+    subtitle = "Subtitle incorrect (to be superseded in bookpart)"
+    composer = "Composer correct (set in book)"
+    piece = "Piece incorrect (to be superseded in score)"
+  }
+  % This should replace title without affecting other fields
+  \header {
+    title = "Title correct (superseded at book level)"
+  }
+}
+
+-----
+(lilypond
+  (version_statement (version_number))
+  (header_block
+    (assignment (assignment_id) (string))
+  )
+
+  (book_block
+    (header_block
+      (assignment (assignment_id) (string))
+      (assignment (assignment_id) (string))
+      (assignment (assignment_id) (string))
+      (assignment (assignment_id) (string))
+    )
+    (comment_statement)
+    (header_block
+      (assignment (assignment_id) (string))
+    )
+  )
+)

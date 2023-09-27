@@ -16,10 +16,11 @@ module.exports = grammar({
   name: "lilypond",
 
   rules: {
-    lilypond: $ => repeat($.top_level_expression),
-    top_level_expression: $ => choice(
+    lilypond: $ => repeat($._top_level_expression),
+    _top_level_expression: $ => choice(
+      $.version_statement,
       $.header_block,
-      //$.book_block,
+      $.book_block,
       //$.bookpart_block,
       //$.BOOK_IDENTIFIER,
       //$.score_block,
@@ -32,11 +33,12 @@ module.exports = grammar({
     ),
 
     header_block: $ => seq(
-      "\\header", "{", $.lilypond_header_body, "}"
+      "\\header", "{", $._lilypond_header_body, "}"
     ),
 
-    lilypond_header_body: $ => repeat1(choice(
+    _lilypond_header_body: $ => repeat1(choice(
       $.assignment,
+      $.comment_statement,
       //$.SCM_TOKEN,
       //$.embedded_scm_active
     )),
@@ -80,25 +82,26 @@ module.exports = grammar({
     BOOK_IDENTIFIER: $ => prec(PRECS.BOOK_IDENTIFIER, $.any),
 
     book_block: $ => prec(PRECS.book_block, seq(
-      "\\book", "{", $.book_body, "}"
+      "\\book", "{", repeat($._book_body), "}"
     )),
 
-    book_body: $ => prec(PRECS.book_body, choice(
+    _book_body: $ => prec(PRECS.book_body, choice(
       //$.BOOK_IDENTIFIER,
-      seq($.book_body, $.paper_block),
-      seq($.book_body, $.bookpart_block),
-      seq($.book_body, $.score_block),
-      seq($.book_body, $.composite_music),
-      seq($.book_body, $.full_markup),
-      seq($.book_body, $.full_markup_list),
-      seq($.book_body, $.SCM_TOKEN),
-      seq($.book_body, $.embedded_scm_active),
-      $.book_body,
-      seq($.book_body, $.error)
+      //$.paper_block,
+      $.bookpart_block,
+      $.header_block,
+      $.comment_statement,
+      //$.score_block,
+      //$.composite_music,
+      //$.full_markup,
+      //$.full_markup_list,
+      //$.SCM_TOKEN,
+      //$.embedded_scm_active,
+      //$.error
     )),
 
     bookpart_block: $ => prec(PRECS.bookpart_block, seq(
-      "\\bookpart", "{", $.bookpart_body, "}"
+      "\\bookpart", "{", $.any, "}"
     )),
 
     bookpart_body: $ => prec(PRECS.bookpart_body, choice(

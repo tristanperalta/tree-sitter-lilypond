@@ -5,15 +5,23 @@
       "type": "REPEAT",
       "content": {
         "type": "SYMBOL",
-        "name": "top_level_expression"
+        "name": "_top_level_expression"
       }
     },
-    "top_level_expression": {
+    "_top_level_expression": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
+          "name": "version_statement"
+        },
+        {
+          "type": "SYMBOL",
           "name": "header_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "book_block"
         }
       ]
     },
@@ -30,7 +38,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "lilypond_header_body"
+          "name": "_lilypond_header_body"
         },
         {
           "type": "STRING",
@@ -38,7 +46,7 @@
         }
       ]
     },
-    "lilypond_header_body": {
+    "_lilypond_header_body": {
       "type": "REPEAT1",
       "content": {
         "type": "CHOICE",
@@ -46,6 +54,10 @@
           {
             "type": "SYMBOL",
             "name": "assignment"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "comment_statement"
           }
         ]
       }
@@ -189,8 +201,11 @@
             "value": "{"
           },
           {
-            "type": "SYMBOL",
-            "name": "book_body"
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_book_body"
+            }
           },
           {
             "type": "STRING",
@@ -199,132 +214,23 @@
         ]
       }
     },
-    "book_body": {
+    "_book_body": {
       "type": "PREC",
       "value": 49,
       "content": {
         "type": "CHOICE",
         "members": [
           {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "book_body"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "paper_block"
-              }
-            ]
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "book_body"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "bookpart_block"
-              }
-            ]
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "book_body"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "score_block"
-              }
-            ]
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "book_body"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "composite_music"
-              }
-            ]
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "book_body"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "full_markup"
-              }
-            ]
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "book_body"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "full_markup_list"
-              }
-            ]
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "book_body"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "SCM_TOKEN"
-              }
-            ]
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "book_body"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "embedded_scm_active"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "bookpart_block"
           },
           {
             "type": "SYMBOL",
-            "name": "book_body"
+            "name": "header_block"
           },
           {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "book_body"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "error"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "comment_statement"
           }
         ]
       }
@@ -345,7 +251,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "bookpart_body"
+            "name": "any"
           },
           {
             "type": "STRING",

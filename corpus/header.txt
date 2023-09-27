@@ -1,0 +1,68 @@
+=================
+header block
+=================
+\header {
+  title = "SUITE I."
+  composer = "J. S. Bach."
+}
+
+---
+(lilypond
+  (header_block
+    (assignment (assignment_id) (string))
+    (assignment (assignment_id) (string))
+  )
+)
+
+=================
+multi header block
+=================
+\header {
+  title = "SUITE I."
+  composer = "J. S. Bach."
+}
+\header {
+    texidoc="A second top-level header block shall not entirely replace a first header block, but only changed variables."
+  piece = "Piece correct (set at top level)"
+  title = "Title incorrect (to be superseded at top level)"
+}
+
+---
+(lilypond
+  (header_block
+    (assignment (assignment_id) (string))
+    (assignment (assignment_id) (string))
+  )
+  (header_block
+    (assignment (assignment_id) (string))
+    (assignment (assignment_id) (string))
+    (assignment (assignment_id) (string))
+  )
+)
+===================
+header with comment
+===================
+\version "2.16.0"
+\header {
+  texidoc = "A second top-level header block shall not entirely replace a first header block, but only changed variables."
+  piece = "Piece correct (set at top level)"
+  title = "Title incorrect (to be superseded at top level)"
+}
+
+\header {
+  % this should not overwrite the piece from above!
+  title = "title correct"
+}
+---
+(lilypond
+  (version_statement (version_number))
+  (header_block
+    (assignment (assignment_id) (string))
+    (assignment (assignment_id) (string))
+    (assignment (assignment_id) (string))
+  )
+  (header_block
+    (comment_statement)
+    (assignment (assignment_id) (string))
+  )
+)
