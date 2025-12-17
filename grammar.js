@@ -3,6 +3,7 @@
  *
  * Based on LilyPond 2.24.4 parser (lily/parser.yy)
  * Milestone 1: Core Structure
+ * Milestone 2: Music Basics
  */
 
 const PREC = {
@@ -31,10 +32,10 @@ module.exports = grammar({
       $.layout_block,
       $.midi_block,
       $.assignment,
+      $.music,
       $.embedded_scm,
       $.comment,
       // Future milestones:
-      // $.composite_music,
       // $.full_markup,
     ),
 
@@ -98,10 +99,10 @@ module.exports = grammar({
       $.bookpart_block,
       $.score_block,
       $.paper_block,
+      $.music,
       $.embedded_scm,
       $.comment,
       // Future milestones:
-      // $.composite_music,
       // $.full_markup,
     ),
 
@@ -116,10 +117,10 @@ module.exports = grammar({
       $.header_block,
       $.score_block,
       $.paper_block,
+      $.music,
       $.embedded_scm,
       $.comment,
       // Future milestones:
-      // $.composite_music,
       // $.full_markup,
     ),
 
@@ -134,10 +135,9 @@ module.exports = grammar({
       $.header_block,
       $.layout_block,
       $.midi_block,
+      $.music,
       $.embedded_scm,
       $.comment,
-      // Future milestones:
-      // $.music,
     ),
 
     // ==========================================================================
@@ -190,9 +190,9 @@ module.exports = grammar({
     _identifier_init: $ => choice(
       $.string,
       $.number_expression,
+      $.music,
       $.embedded_scm,
       // Future milestones:
-      // $.music,
       // $.markup,
     ),
 
@@ -262,5 +262,100 @@ module.exports = grammar({
     scheme_number: $ => $.unsigned,
 
     scheme_symbol: $ => seq("'", $.symbol),
+
+    // ==========================================================================
+    // Music (M2)
+    // ==========================================================================
+
+    // Sequential music block
+    music: $ => seq(
+      '{',
+      repeat($._music_expression),
+      '}',
+    ),
+
+    _music_expression: $ => choice(
+      $.note,
+      $.rest,
+      $.skip,
+      $.music,  // nested sequential
+      $.comment,
+    ),
+
+    // ==========================================================================
+    // Notes, Rests, Skips (M2)
+    // ==========================================================================
+
+    note: $ => seq(
+      $.pitch,
+      optional($.duration),
+    ),
+
+    rest: $ => seq(
+      'r',
+      optional($.duration),
+    ),
+
+    skip: $ => seq(
+      's',
+      optional($.duration),
+    ),
+
+    // ==========================================================================
+    // Pitch (M2)
+    // ==========================================================================
+
+    pitch: $ => seq(
+      $.pitch_name,
+      optional($.accidental),
+      optional($.octave),
+    ),
+
+    // Base pitch names: c, d, e, f, g, a, b
+    pitch_name: $ => /[a-g]/,
+
+    // Accidentals
+    accidental: $ => choice(
+      'isis',  // double sharp (must come before 'is')
+      'eses',  // double flat (must come before 'es')
+      'is',    // sharp
+      'es',    // flat
+    ),
+
+    // Octave marks
+    octave: $ => choice(
+      $.octave_up,
+      $.octave_down,
+    ),
+
+    octave_up: $ => repeat1("'"),
+    octave_down: $ => repeat1(","),
+
+    // ==========================================================================
+    // Duration (M2)
+    // ==========================================================================
+
+    duration: $ => seq(
+      $.duration_value,
+      optional($.dots),
+      repeat($.multiplier),
+    ),
+
+    // Duration values (powers of 2, plus special values)
+    duration_value: $ => choice(
+      '\\breve',
+      '\\longa',
+      '\\maxima',
+      /[0-9]+/,  // 1, 2, 4, 8, 16, 32, 64, 128, 256
+    ),
+
+    // Dots
+    dots: $ => repeat1('.'),
+
+    // Multiplier
+    multiplier: $ => seq(
+      '*',
+      choice($.unsigned, $.fraction),
+    ),
   },
 });

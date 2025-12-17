@@ -50,6 +50,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "music"
+        },
+        {
+          "type": "SYMBOL",
           "name": "embedded_scm"
         },
         {
@@ -211,6 +215,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "music"
+        },
+        {
+          "type": "SYMBOL",
           "name": "embedded_scm"
         },
         {
@@ -260,6 +268,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "music"
+        },
+        {
+          "type": "SYMBOL",
           "name": "embedded_scm"
         },
         {
@@ -306,6 +318,10 @@
         {
           "type": "SYMBOL",
           "name": "midi_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "music"
         },
         {
           "type": "SYMBOL",
@@ -446,6 +462,10 @@
         {
           "type": "SYMBOL",
           "name": "number_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "music"
         },
         {
           "type": "SYMBOL",
@@ -679,6 +699,277 @@
         {
           "type": "SYMBOL",
           "name": "symbol"
+        }
+      ]
+    },
+    "music": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_music_expression"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "_music_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "note"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "rest"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "skip"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "music"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comment"
+        }
+      ]
+    },
+    "note": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "pitch"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "duration"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "rest": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "r"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "duration"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "skip": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "s"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "duration"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "pitch": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "pitch_name"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "accidental"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "octave"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "pitch_name": {
+      "type": "PATTERN",
+      "value": "[a-g]"
+    },
+    "accidental": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "isis"
+        },
+        {
+          "type": "STRING",
+          "value": "eses"
+        },
+        {
+          "type": "STRING",
+          "value": "is"
+        },
+        {
+          "type": "STRING",
+          "value": "es"
+        }
+      ]
+    },
+    "octave": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "octave_up"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "octave_down"
+        }
+      ]
+    },
+    "octave_up": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "STRING",
+        "value": "'"
+      }
+    },
+    "octave_down": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "STRING",
+        "value": ","
+      }
+    },
+    "duration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "duration_value"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "dots"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "multiplier"
+          }
+        }
+      ]
+    },
+    "duration_value": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\breve"
+        },
+        {
+          "type": "STRING",
+          "value": "\\longa"
+        },
+        {
+          "type": "STRING",
+          "value": "\\maxima"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[0-9]+"
+        }
+      ]
+    },
+    "dots": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "STRING",
+        "value": "."
+      }
+    },
+    "multiplier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "*"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "unsigned"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "fraction"
+            }
+          ]
         }
       ]
     }

@@ -1,0 +1,241 @@
+=================
+simple note
+=================
+{ c }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)))))
+
+=================
+note with accidental sharp
+=================
+{ cis }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name) (accidental)))))
+
+=================
+note with accidental flat
+=================
+{ bes }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name) (accidental)))))
+
+=================
+note with double sharp
+=================
+{ fisis }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name) (accidental)))))
+
+=================
+note with double flat
+=================
+{ geses }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name) (accidental)))))
+
+=================
+note with octave up
+=================
+{ c' }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name) (octave (octave_up))))))
+
+=================
+note with octave down
+=================
+{ c, }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name) (octave (octave_down))))))
+
+=================
+note with multiple octaves up
+=================
+{ c''' }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name) (octave (octave_up))))))
+
+=================
+note with accidental and octave
+=================
+{ cis' }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name) (accidental) (octave (octave_up))))))
+
+=================
+note with duration
+=================
+{ c4 }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)) (duration (duration_value)))))
+
+=================
+dotted note
+=================
+{ c4. }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)) (duration (duration_value) (dots)))))
+
+=================
+double dotted note
+=================
+{ c4.. }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)) (duration (duration_value) (dots)))))
+
+=================
+note with multiplier
+=================
+{ c4*2 }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)) (duration (duration_value) (multiplier (unsigned))))))
+
+=================
+note with fraction multiplier
+=================
+{ c4*2/3 }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)) (duration (duration_value) (multiplier (fraction))))))
+
+=================
+rest
+=================
+{ r4 }
+
+---
+(lilypond
+  (music
+    (rest (duration (duration_value)))))
+
+=================
+rest without duration
+=================
+{ r }
+
+---
+(lilypond
+  (music
+    (rest)))
+
+=================
+skip
+=================
+{ s2 }
+
+---
+(lilypond
+  (music
+    (skip (duration (duration_value)))))
+
+=================
+melody
+=================
+{ c4 d e f g2 }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)) (duration (duration_value)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)) (duration (duration_value)))))
+
+=================
+octaves and accidentals
+=================
+{ c' cis' d'' ees, }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name) (octave (octave_up))))
+    (note (pitch (pitch_name) (accidental) (octave (octave_up))))
+    (note (pitch (pitch_name) (octave (octave_up))))
+    (note (pitch (pitch_name) (accidental) (octave (octave_down))))))
+
+=================
+nested music
+=================
+{ c { d e } f }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)))
+    (music
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))
+    (note (pitch (pitch_name)))))
+
+=================
+score with music
+=================
+\score {
+  { c d e }
+}
+
+---
+(lilypond
+  (score_block
+    (music
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))))
+
+=================
+all pitch names
+=================
+{ a b c d e f g }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))
