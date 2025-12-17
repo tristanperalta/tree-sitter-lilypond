@@ -9,10 +9,8 @@ header block
 ---
 (lilypond
   (header_block
-    (assignment (assignment_id) (string))
-    (assignment (assignment_id) (string))
-  )
-)
+    (assignment (assignment_id (symbol)) (string))
+    (assignment (assignment_id (symbol)) (string))))
 
 =================
 multi header block
@@ -22,47 +20,43 @@ multi header block
   composer = "J. S. Bach."
 }
 \header {
-    texidoc="A second top-level header block shall not entirely replace a first header block, but only changed variables."
-  piece = "Piece correct (set at top level)"
-  title = "Title incorrect (to be superseded at top level)"
+  texidoc = "A second top-level header block."
+  piece = "Piece correct"
+  title = "Title incorrect"
 }
 
 ---
 (lilypond
   (header_block
-    (assignment (assignment_id) (string))
-    (assignment (assignment_id) (string))
-  )
+    (assignment (assignment_id (symbol)) (string))
+    (assignment (assignment_id (symbol)) (string)))
   (header_block
-    (assignment (assignment_id) (string))
-    (assignment (assignment_id) (string))
-    (assignment (assignment_id) (string))
-  )
-)
+    (assignment (assignment_id (symbol)) (string))
+    (assignment (assignment_id (symbol)) (string))
+    (assignment (assignment_id (symbol)) (string))))
+
 ===================
 header with comment
 ===================
 \version "2.16.0"
 \header {
-  texidoc = "A second top-level header block shall not entirely replace a first header block, but only changed variables."
-  piece = "Piece correct (set at top level)"
-  title = "Title incorrect (to be superseded at top level)"
+  texidoc = "A header block."
+  piece = "Piece correct"
+  title = "Title incorrect"
 }
 
 \header {
   % this should not overwrite the piece from above!
   title = "title correct"
 }
+
 ---
 (lilypond
   (version_statement (version_number))
   (header_block
-    (assignment (assignment_id) (string))
-    (assignment (assignment_id) (string))
-    (assignment (assignment_id) (string))
-  )
+    (assignment (assignment_id (symbol)) (string))
+    (assignment (assignment_id (symbol)) (string))
+    (assignment (assignment_id (symbol)) (string)))
   (header_block
-    (comment_statement)
-    (assignment (assignment_id) (string))
-  )
-)
+    (comment (line_comment))
+    (assignment (assignment_id (symbol)) (string))))

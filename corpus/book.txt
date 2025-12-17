@@ -4,39 +4,95 @@ header book multi
 \version "2.16.0"
 
 \header {
-  texidoc="A second book-level header block and headers nested in bookpart and score should not clear values from the first header block.  This score should show composer, piece, subtitle and title."
+  texidoc = "A header block."
 }
 
 \book {
   \header {
-    title = "Title incorrect (to be superseded at book level)"
-    subtitle = "Subtitle incorrect (to be superseded in bookpart)"
-    composer = "Composer correct (set in book)"
-    piece = "Piece incorrect (to be superseded in score)"
+    title = "Title incorrect"
+    subtitle = "Subtitle incorrect"
+    composer = "Composer correct"
+    piece = "Piece incorrect"
   }
   % This should replace title without affecting other fields
   \header {
-    title = "Title correct (superseded at book level)"
+    title = "Title correct"
   }
 }
 
------
+---
 (lilypond
   (version_statement (version_number))
   (header_block
-    (assignment (assignment_id) (string))
-  )
-
+    (assignment (assignment_id (symbol)) (string)))
   (book_block
     (header_block
-      (assignment (assignment_id) (string))
-      (assignment (assignment_id) (string))
-      (assignment (assignment_id) (string))
-      (assignment (assignment_id) (string))
-    )
-    (comment_statement)
+      (assignment (assignment_id (symbol)) (string))
+      (assignment (assignment_id (symbol)) (string))
+      (assignment (assignment_id (symbol)) (string))
+      (assignment (assignment_id (symbol)) (string)))
+    (comment (line_comment))
     (header_block
-      (assignment (assignment_id) (string))
-    )
-  )
-)
+      (assignment (assignment_id (symbol)) (string)))))
+
+=================
+book with score
+=================
+\book {
+  \score {
+    \header {
+      piece = "Movement I"
+    }
+    \layout { }
+    \midi { }
+  }
+}
+
+---
+(lilypond
+  (book_block
+    (score_block
+      (header_block
+        (assignment (assignment_id (symbol)) (string)))
+      (layout_block)
+      (midi_block))))
+
+=================
+book with paper
+=================
+\book {
+  \paper {
+    indent = 0
+  }
+}
+
+---
+(lilypond
+  (book_block
+    (paper_block
+      (assignment
+        (assignment_id (symbol))
+        (number_expression
+          (number_term
+            (number_factor
+              (bare_number (unsigned)))))))))
+
+=================
+bookpart
+=================
+\bookpart {
+  \header {
+    subtitle = "Part I"
+  }
+  \score {
+    \layout { }
+  }
+}
+
+---
+(lilypond
+  (bookpart_block
+    (header_block
+      (assignment (assignment_id (symbol)) (string)))
+    (score_block
+      (layout_block))))

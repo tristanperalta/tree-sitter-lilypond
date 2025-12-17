@@ -1,212 +1,266 @@
-const PRECS = {
-  BOOK_IDENTIFIER: 1,
-  composite_music: 2,
-  full_markup: 3,
-  full_markup_list: 4,
-  SCM_TOKEN: 5,
-  embedded_scm_active: 6,
-  output_def: 7,
-  book_block: 50,
-  book_body: 49,
-  bookpart_block: 48,
-  bookpart_body: 49
+/**
+ * Tree-sitter grammar for LilyPond music notation
+ *
+ * Based on LilyPond 2.24.4 parser (lily/parser.yy)
+ * Milestone 1: Core Structure
+ */
+
+const PREC = {
+  NUMBER_ADD: 1,
+  NUMBER_MUL: 2,
+  UNARY: 3,
 };
 
 module.exports = grammar({
   name: "lilypond",
 
+  extras: $ => [
+    /\s+/,
+  ],
+
   rules: {
     lilypond: $ => repeat($._top_level_expression),
+
     _top_level_expression: $ => choice(
       $.version_statement,
       $.header_block,
       $.book_block,
-      //$.bookpart_block,
-      //$.BOOK_IDENTIFIER,
-      //$.score_block,
-      //$.composite_music,
-      //$.full_markup,
-      //$.full_markup_list,
-      //$.SCM_TOKEN,
-      //$.embedded_scm_active,
-      //$.output_def
-    ),
-
-    header_block: $ => seq(
-      "\\header", "{", $._lilypond_header_body, "}"
-    ),
-
-    _lilypond_header_body: $ => repeat1(choice(
-      $.assignment,
-      $.comment_statement,
-      //$.SCM_TOKEN,
-      //$.embedded_scm_active
-    )),
-
-    assignment: $ => choice(
-      seq($.assignment_id, '=', $.string)
-      //seq($.assignment_id, '=', $.identifier_init),
-      //seq($.assignment_id, '.', $.property_path, '=', $.identifier_init),
-      //seq($.markup_mode_word, '=', $.identifier_init)
-    ),
-
-    assignment_id: $ => token(/\w+/),
-
-    identifier_init: $ => choice(
-      //$.identifier_init_nonumber,
-      $.number_expression,
-      $.string,
-      //seq($.symbol_list_part_bare, '.', $.property_path),
-      //seq($.symbol_list_part_bare, ',', $.property_path),
-      // seq($.post_event_nofinger, $.post_events)
-    ),
-
-    identifier_init_nonumber: $ => choice(
-      $.header_block,
+      $.bookpart_block,
       $.score_block,
-      $.book_block,
-      $.bookpart_block,
-      $.output_def,
-      $.context_def_spec_block,
-      $.music_assign,
-      $.pitch_or_music,
-      $.FRACTION,
-      $.string,
+      $.paper_block,
+      $.layout_block,
+      $.midi_block,
+      $.assignment,
       $.embedded_scm,
-      $.partial_markup,
-      $.full_markup_list,
-      $.context_modification,
-      seq($.partial_function, $.ETC),
+      $.comment,
+      // Future milestones:
+      // $.composite_music,
+      // $.full_markup,
     ),
 
-    BOOK_IDENTIFIER: $ => prec(PRECS.BOOK_IDENTIFIER, $.any),
+    // ==========================================================================
+    // Comments (Step 1.2)
+    // ==========================================================================
 
-    book_block: $ => prec(PRECS.book_block, seq(
-      "\\book", "{", repeat($._book_body), "}"
+    comment: $ => choice(
+      $.line_comment,
+      $.block_comment,
+    ),
+
+    line_comment: $ => token(seq('%', /[^{\n][^\n]*/)),
+
+    // Simple block comment (non-nested) - will be replaced by external scanner
+    block_comment: $ => token(seq(
+      '%{',
+      /[^%]*(%+[^%}][^%]*)*/,
+      '%}'
     )),
 
-    _book_body: $ => prec(PRECS.book_body, choice(
-      //$.BOOK_IDENTIFIER,
-      //$.paper_block,
-      $.bookpart_block,
-      $.header_block,
-      $.comment_statement,
-      //$.score_block,
-      //$.composite_music,
-      //$.full_markup,
-      //$.full_markup_list,
-      //$.SCM_TOKEN,
-      //$.embedded_scm_active,
-      //$.error
-    )),
-
-    bookpart_block: $ => prec(PRECS.bookpart_block, seq(
-      "\\bookpart", "{", $.any, "}"
-    )),
-
-    bookpart_body: $ => prec(PRECS.bookpart_body, choice(
-      //$.BOOK_IDENTIFIER,
-      seq($.bookpart_body, $.paper_block),
-      seq($.bookpart_body, $.score_block),
-      seq($.bookpart_body, $.composite_music),
-      seq($.bookpart_body, $.full_markup),
-      seq($.bookpart_body, $.full_markup_list),
-      seq($.bookpart_body, $.SCM_TOKEN),
-      seq($.bookpart_body, $.embedded_scm_active),
-      //$.bookpart_body,
-      seq($.bookpart_body, $.error)
-    )),
-
-    score_block: $ => seq(
-      "\\score", "{", $.score_body, "}"
-    ),
-
-    score_body: $ => choice(
-      $.score_items,
-      seq($.score_body, $.error)
-    ),
-
-    score_items: $ => $.any,
-
-    score_item: $ => choice(
-      $.embedded_scm,
-      $.music,
-      $.output_def
-    ),
-
-    number_expression: $ => choice(
-      seq($.number_expression, "+", $.number_term),
-      seq($.number_expression, "-", $.number_term),
-      $.number_term
-    ),
-
-    number_term: $ => prec(5, choice(
-      $.number_factor,
-      seq($.number_factor, "*", $.number_factor),
-      seq($.number_factor, "/", $.number_factor),
-    )),
-
-    number_factor: $ => choice(
-      $.number_factor,
-      $.bare_number
-    ),
-
-    bare_number: $ => /[0-9]+/,
-
-    composite_music: $ => $.any,
-    full_markup: $ => $.any,
-    full_markup_list: $ => $.any,
-    SCM_TOKEN: $ => prec(2, $.any),
-    embedded_scm_active: $ => prec(1, $.any),
-    embedded_scm: $ => $.any,
-    output_def: $ => $.any,
-    property_path: $ => $.any,
-    markup_mode_word: $ => $.any,
-    symbol_list_part_bare: $ => $.any,
-    partial_function: $ => $.any,
-    ETC: $ => $.any,
-    context_def_spec_block: $ => $.any,
-
-
-    music_assign: $ => $.any,
-    pitch_or_music: $ => $.any,
-    FRACTION: $ => $.any,
-    partial_markup: $ => $.any,
-    context_modification: $ => $.any,
-    paper_block: $ => $.any,
-    error: $ => $.any,
-    music: $ => $.any,
+    // ==========================================================================
+    // Version Statement (Step 1.3)
+    // ==========================================================================
 
     version_statement: $ => seq(
-      "\\version",
+      '\\version',
       alias($.string, $.version_number),
     ),
 
-    block: $ => seq(
-      "{",
-      repeat(/.+/),
-      "}"
+    // ==========================================================================
+    // Header Block (Step 1.4)
+    // ==========================================================================
+
+    header_block: $ => seq(
+      '\\header',
+      '{',
+      repeat($._header_body),
+      '}',
     ),
 
-    command: $ => seq(
-      "\\",
-      $.identifier,
-      choice($.block, $.string)
+    _header_body: $ => choice(
+      $.assignment,
+      $.embedded_scm,
+      $.comment,
     ),
 
-    identifier: $ => /[^ ]+/,
+    // ==========================================================================
+    // Book Structure (Step 1.5)
+    // ==========================================================================
 
-    comment_statement: $ => token(choice(
-      seq("%", /.*/),
-      seq(
-        "%{",
-        't',
-        "%}"
-      )
-    )),
+    book_block: $ => seq(
+      '\\book',
+      '{',
+      repeat($._book_body),
+      '}',
+    ),
 
-    string: $ => /".+"/,
+    _book_body: $ => choice(
+      $.header_block,
+      $.bookpart_block,
+      $.score_block,
+      $.paper_block,
+      $.embedded_scm,
+      $.comment,
+      // Future milestones:
+      // $.composite_music,
+      // $.full_markup,
+    ),
 
-    any: $ => /.+/
-  }
-})
+    bookpart_block: $ => seq(
+      '\\bookpart',
+      '{',
+      repeat($._bookpart_body),
+      '}',
+    ),
+
+    _bookpart_body: $ => choice(
+      $.header_block,
+      $.score_block,
+      $.paper_block,
+      $.embedded_scm,
+      $.comment,
+      // Future milestones:
+      // $.composite_music,
+      // $.full_markup,
+    ),
+
+    score_block: $ => seq(
+      '\\score',
+      '{',
+      repeat($._score_body),
+      '}',
+    ),
+
+    _score_body: $ => choice(
+      $.header_block,
+      $.layout_block,
+      $.midi_block,
+      $.embedded_scm,
+      $.comment,
+      // Future milestones:
+      // $.music,
+    ),
+
+    // ==========================================================================
+    // Output Definitions (Step 1.5)
+    // ==========================================================================
+
+    paper_block: $ => seq(
+      '\\paper',
+      '{',
+      repeat($._output_body),
+      '}',
+    ),
+
+    layout_block: $ => seq(
+      '\\layout',
+      '{',
+      repeat($._output_body),
+      '}',
+    ),
+
+    midi_block: $ => seq(
+      '\\midi',
+      '{',
+      repeat($._output_body),
+      '}',
+    ),
+
+    _output_body: $ => choice(
+      $.assignment,
+      $.embedded_scm,
+      $.comment,
+      // Future: $.context_def
+    ),
+
+    // ==========================================================================
+    // Assignments (Step 1.4, 1.5)
+    // ==========================================================================
+
+    assignment: $ => seq(
+      $.assignment_id,
+      '=',
+      $._identifier_init,
+    ),
+
+    assignment_id: $ => choice(
+      $.symbol,
+      $.string,
+    ),
+
+    _identifier_init: $ => choice(
+      $.string,
+      $.number_expression,
+      $.embedded_scm,
+      // Future milestones:
+      // $.music,
+      // $.markup,
+    ),
+
+    // ==========================================================================
+    // Number Expressions (Step 1.6)
+    // ==========================================================================
+
+    number_expression: $ => choice(
+      prec.left(PREC.NUMBER_ADD, seq($.number_expression, '+', $.number_term)),
+      prec.left(PREC.NUMBER_ADD, seq($.number_expression, '-', $.number_term)),
+      $.number_term,
+    ),
+
+    number_term: $ => choice(
+      prec.left(PREC.NUMBER_MUL, seq($.number_term, '*', $.number_factor)),
+      prec.left(PREC.NUMBER_MUL, seq($.number_term, '/', $.number_factor)),
+      $.number_factor,
+    ),
+
+    number_factor: $ => choice(
+      prec(PREC.UNARY, seq('-', $.number_factor)),
+      $.bare_number,
+    ),
+
+    bare_number: $ => choice(
+      $.unsigned,
+      $.real,
+      $.fraction,
+    ),
+
+    // ==========================================================================
+    // Basic Tokens (Step 1.1)
+    // ==========================================================================
+
+    // Unsigned integer: 0, 123, 456
+    unsigned: $ => /[0-9]+/,
+
+    // Real number: 3.14, .5, 0.123
+    real: $ => /[0-9]*\.[0-9]+/,
+
+    // Fraction: 3/4, 1/2
+    fraction: $ => /[0-9]+\/[0-9]+/,
+
+    // String with escape handling
+    string: $ => /"([^"\\]|\\.)*"/,
+
+    // Symbol/identifier
+    symbol: $ => /[a-zA-Z][a-zA-Z0-9_-]*/,
+
+    // ==========================================================================
+    // Embedded Scheme (Step 1.8) - Placeholder
+    // ==========================================================================
+
+    // Basic embedded Scheme - will be expanded with external scanner
+    embedded_scm: $ => seq(
+      '#',
+      choice(
+        $.scheme_boolean,
+        $.scheme_number,
+        $.scheme_symbol,
+        // $.scheme_expression - requires external scanner for balanced parens
+      ),
+    ),
+
+    scheme_boolean: $ => choice('##t', '##f', '#t', '#f'),
+
+    scheme_number: $ => $.unsigned,
+
+    scheme_symbol: $ => seq("'", $.symbol),
+  },
+});

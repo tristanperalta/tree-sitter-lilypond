@@ -12,7 +12,57 @@
           "named": true
         },
         {
+          "type": "embedded_scm",
+          "named": true
+        },
+        {
+          "type": "number_expression",
+          "named": true
+        },
+        {
           "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "assignment_id",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "bare_number",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "fraction",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "unsigned",
           "named": true
         }
       ]
@@ -31,11 +81,23 @@
           "named": true
         },
         {
-          "type": "comment_statement",
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "embedded_scm",
           "named": true
         },
         {
           "type": "header_block",
+          "named": true
+        },
+        {
+          "type": "paper_block",
+          "named": true
+        },
+        {
+          "type": "score_block",
           "named": true
         }
       ]
@@ -46,11 +108,69 @@
     "named": true,
     "fields": {},
     "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "embedded_scm",
+          "named": true
+        },
+        {
+          "type": "header_block",
+          "named": true
+        },
+        {
+          "type": "paper_block",
+          "named": true
+        },
+        {
+          "type": "score_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "fields": {},
+    "children": {
       "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "any",
+          "type": "block_comment",
+          "named": true
+        },
+        {
+          "type": "line_comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "embedded_scm",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "scheme_boolean",
+          "named": true
+        },
+        {
+          "type": "scheme_number",
+          "named": true
+        },
+        {
+          "type": "scheme_symbol",
           "named": true
         }
       ]
@@ -62,14 +182,41 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "assignment",
           "named": true
         },
         {
-          "type": "comment_statement",
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "embedded_scm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "layout_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "embedded_scm",
           "named": true
         }
       ]
@@ -85,7 +232,23 @@
       "required": false,
       "types": [
         {
+          "type": "assignment",
+          "named": true
+        },
+        {
           "type": "book_block",
+          "named": true
+        },
+        {
+          "type": "bookpart_block",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "embedded_scm",
           "named": true
         },
         {
@@ -93,7 +256,192 @@
           "named": true
         },
         {
+          "type": "layout_block",
+          "named": true
+        },
+        {
+          "type": "midi_block",
+          "named": true
+        },
+        {
+          "type": "paper_block",
+          "named": true
+        },
+        {
+          "type": "score_block",
+          "named": true
+        },
+        {
           "type": "version_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "midi_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "embedded_scm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "number_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "number_expression",
+          "named": true
+        },
+        {
+          "type": "number_term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "number_factor",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "bare_number",
+          "named": true
+        },
+        {
+          "type": "number_factor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "number_term",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "number_factor",
+          "named": true
+        },
+        {
+          "type": "number_term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "paper_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "embedded_scm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "scheme_boolean",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "scheme_number",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "unsigned",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "scheme_symbol",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "score_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "embedded_scm",
+          "named": true
+        },
+        {
+          "type": "header_block",
+          "named": true
+        },
+        {
+          "type": "layout_block",
+          "named": true
+        },
+        {
+          "type": "midi_block",
           "named": true
         }
       ]
@@ -115,6 +463,46 @@
     }
   },
   {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "##f",
+    "named": false
+  },
+  {
+    "type": "##t",
+    "named": false
+  },
+  {
+    "type": "#f",
+    "named": false
+  },
+  {
+    "type": "#t",
+    "named": false
+  },
+  {
+    "type": "'",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
     "type": "=",
     "named": false
   },
@@ -131,23 +519,51 @@
     "named": false
   },
   {
+    "type": "\\layout",
+    "named": false
+  },
+  {
+    "type": "\\midi",
+    "named": false
+  },
+  {
+    "type": "\\paper",
+    "named": false
+  },
+  {
+    "type": "\\score",
+    "named": false
+  },
+  {
     "type": "\\version",
     "named": false
   },
   {
-    "type": "any",
+    "type": "block_comment",
     "named": true
   },
   {
-    "type": "assignment_id",
+    "type": "fraction",
     "named": true
   },
   {
-    "type": "comment_statement",
+    "type": "line_comment",
+    "named": true
+  },
+  {
+    "type": "real",
     "named": true
   },
   {
     "type": "string",
+    "named": true
+  },
+  {
+    "type": "symbol",
+    "named": true
+  },
+  {
+    "type": "unsigned",
     "named": true
   },
   {
