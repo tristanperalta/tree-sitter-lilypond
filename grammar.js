@@ -34,6 +34,12 @@ module.exports = grammar({
       $.context_expression,
       $.repeat_expression,
       $.music_function,
+      $.markup,
+      $.lyric_mode,
+      $.addlyrics,
+      $.lyricsto,
+      $.figure_mode,
+      $.chord_mode,
       $.embedded_scm,
       $.comment,
     ),
@@ -134,6 +140,10 @@ module.exports = grammar({
       $.context_expression,
       $.repeat_expression,
       $.music_function,
+      $.lyric_mode,
+      $.figure_mode,
+      $.chord_mode,
+      $.markup,
       $.embedded_scm,
       $.comment,
     ),
@@ -232,12 +242,234 @@ module.exports = grammar({
         $.scheme_boolean,
         $.scheme_number,
         $.scheme_symbol,
+        $.scheme_string,
+        $.scheme_list,
       ),
     ),
 
     scheme_boolean: $ => choice('##t', '##f', '#t', '#f'),
-    scheme_number: $ => $.unsigned,
+    scheme_number: $ => choice($.unsigned, $.real, $.fraction),
     scheme_symbol: $ => seq("'", $.symbol),
+    scheme_string: $ => $.string,
+    scheme_list: $ => seq(
+      choice("'(", '('),
+      repeat($._scheme_element),
+      ')',
+    ),
+
+    _scheme_element: $ => choice(
+      $.scheme_boolean,
+      $.scheme_number,
+      $.scheme_symbol,
+      $.scheme_string,
+      $.scheme_list,
+      $.symbol,
+    ),
+
+    // Markup
+
+    markup: $ => seq(
+      '\\markup',
+      $._markup_body,
+    ),
+
+    _markup_body: $ => choice(
+      $.markup_block,
+      $.markup_command,
+      $.markup_word,
+      $.string,
+    ),
+
+    markup_block: $ => seq(
+      '{',
+      repeat($._markup_element),
+      '}',
+    ),
+
+    _markup_element: $ => choice(
+      $.markup_command,
+      $.markup_word,
+      $.string,
+      $.markup_block,
+      $.embedded_scm,
+    ),
+
+    markup_command: $ => prec.right(seq(
+      $.markup_command_name,
+      repeat($._markup_argument),
+    )),
+
+    markup_command_name: $ => choice(
+      '\\bold', '\\italic', '\\underline',
+      '\\box', '\\circle', '\\oval',
+      '\\concat', '\\column', '\\line', '\\center-column',
+      '\\fontsize', '\\abs-fontsize', '\\magnify',
+      '\\raise', '\\lower', '\\translate',
+      '\\super', '\\sub', '\\caps', '\\smallCaps',
+      '\\huge', '\\large', '\\normalsize', '\\small', '\\tiny', '\\teeny',
+      '\\hspace', '\\vspace',
+      '\\combine', '\\pad-around',
+      '\\fill-line', '\\justify', '\\wordwrap',
+      '\\note', '\\note-by-number',
+      '\\sharp', '\\flat', '\\natural',
+      '\\dynamic',
+    ),
+
+    _markup_argument: $ => choice(
+      $.string,
+      $.markup_block,
+      $.markup_command,
+      $.number_expression,
+      $.embedded_scm,
+    ),
+
+    markup_word: $ => /[^\s{}\\#"]+/,
+
+    // Lyrics
+
+    lyric_mode: $ => seq(
+      choice('\\lyricmode', '\\lyrics'),
+      optional($.context_modification),
+      $._lyric_body,
+    ),
+
+    _lyric_body: $ => $.lyric_block,
+
+    lyric_block: $ => seq(
+      '{',
+      repeat($._lyric_element),
+      '}',
+    ),
+
+    _lyric_element: $ => choice(
+      $.lyric_word,
+      $.lyric_extender,
+      $.lyric_hyphen,
+      $.lyric_skip,
+      $.duration,
+      $.string,
+      $.comment,
+    ),
+
+    lyric_skip: $ => prec.right(seq('s', optional($.duration))),
+
+    lyric_word: $ => /[a-zA-Z][a-zA-Z0-9']*/,
+    lyric_extender: $ => '__',
+    lyric_hyphen: $ => '--',
+
+    addlyrics: $ => seq(
+      '\\addlyrics',
+      optional($.context_modification),
+      $._lyric_body,
+    ),
+
+    lyricsto: $ => seq(
+      '\\lyricsto',
+      choice($.string, $.symbol),
+      $._lyric_body,
+    ),
+
+    // Figured bass
+
+    figure_mode: $ => seq(
+      choice('\\figuremode', '\\figures'),
+      optional($.context_modification),
+      $.figure_block,
+    ),
+
+    figure_block: $ => seq(
+      '{',
+      repeat($._figure_element),
+      '}',
+    ),
+
+    _figure_element: $ => choice(
+      $.figure_group,
+      $.figure_rest,
+      $.figure_skip,
+      $.comment,
+    ),
+
+    figure_rest: $ => prec.right(seq('r', optional($.duration))),
+    figure_skip: $ => prec.right(seq('s', optional($.duration))),
+
+    figure_group: $ => seq(
+      '<',
+      repeat($.figure),
+      '>',
+      optional($.duration),
+    ),
+
+    figure: $ => seq(
+      choice(
+        $.figure_number,
+        '_',
+      ),
+      repeat($.figure_modifier),
+    ),
+
+    figure_number: $ => /[0-9]+/,
+
+    figure_modifier: $ => choice(
+      '+',
+      '\\+',
+      '!',
+      '\\!',
+      '[',
+      ']',
+    ),
+
+    // Chord mode
+
+    chord_mode: $ => seq(
+      choice('\\chordmode', '\\chords'),
+      optional($.context_modification),
+      $.chord_body_block,
+    ),
+
+    chord_body_block: $ => seq(
+      '{',
+      repeat($._chord_body_element),
+      '}',
+    ),
+
+    _chord_body_element: $ => choice(
+      $.chord_name,
+      $.rest,
+      $.skip,
+      $.comment,
+    ),
+
+    chord_name: $ => seq(
+      $.pitch,
+      optional($.chord_quality),
+      optional($.chord_inversion),
+      optional($.duration),
+    ),
+
+    chord_quality: $ => prec.right(seq(
+      ':',
+      repeat1($.chord_modifier),
+    )),
+
+    chord_modifier: $ => choice(
+      // Chord intervals - only common ones
+      '3', '5', '6', '7', '9', '11', '13',
+      'maj',
+      'min',
+      'm',
+      'dim',
+      'aug',
+      'sus',
+      '+',
+      '-',
+      '^',
+    ),
+
+    chord_inversion: $ => seq(
+      '/',
+      $.pitch,
+    ),
 
     // Music
 
@@ -375,6 +607,9 @@ module.exports = grammar({
       $.property_expression,
       $.repeat_expression,
       $.music_function,
+      $.addlyrics,
+      $.lyricsto,
+      $.markup,
       $.comment,
     ),
 

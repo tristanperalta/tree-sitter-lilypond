@@ -5,6 +5,25 @@
     "fields": {}
   },
   {
+    "type": "addlyrics",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "context_modification",
+          "named": true
+        },
+        {
+          "type": "lyric_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "alternative_expression",
     "named": true,
     "fields": {},
@@ -158,6 +177,16 @@
     }
   },
   {
+    "type": "beam_close",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "beam_open",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "book_block",
     "named": true,
     "fields": {},
@@ -287,6 +316,33 @@
     }
   },
   {
+    "type": "chord_body_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "chord_name",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "rest",
+          "named": true
+        },
+        {
+          "type": "skip",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "chord_element",
     "named": true,
     "fields": {},
@@ -296,6 +352,87 @@
       "types": [
         {
           "type": "pitch",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "chord_inversion",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "pitch",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "chord_mode",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "chord_body_block",
+          "named": true
+        },
+        {
+          "type": "context_modification",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "chord_modifier",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "chord_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "chord_inversion",
+          "named": true
+        },
+        {
+          "type": "chord_quality",
+          "named": true
+        },
+        {
+          "type": "duration",
+          "named": true
+        },
+        {
+          "type": "pitch",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "chord_quality",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "chord_modifier",
           "named": true
         }
       ]
@@ -479,11 +616,143 @@
           "named": true
         },
         {
+          "type": "scheme_list",
+          "named": true
+        },
+        {
           "type": "scheme_number",
           "named": true
         },
         {
+          "type": "scheme_string",
+          "named": true
+        },
+        {
           "type": "scheme_symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "figure",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "figure_modifier",
+          "named": true
+        },
+        {
+          "type": "figure_number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "figure_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "figure_group",
+          "named": true
+        },
+        {
+          "type": "figure_rest",
+          "named": true
+        },
+        {
+          "type": "figure_skip",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "figure_group",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "duration",
+          "named": true
+        },
+        {
+          "type": "figure",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "figure_mode",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "context_modification",
+          "named": true
+        },
+        {
+          "type": "figure_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "figure_modifier",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "figure_number",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "figure_rest",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "duration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "figure_skip",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "duration",
           "named": true
         }
       ]
@@ -569,6 +838,10 @@
       "required": false,
       "types": [
         {
+          "type": "addlyrics",
+          "named": true
+        },
+        {
           "type": "assignment",
           "named": true
         },
@@ -578,6 +851,10 @@
         },
         {
           "type": "bookpart_block",
+          "named": true
+        },
+        {
+          "type": "chord_mode",
           "named": true
         },
         {
@@ -593,11 +870,27 @@
           "named": true
         },
         {
+          "type": "figure_mode",
+          "named": true
+        },
+        {
           "type": "header_block",
           "named": true
         },
         {
           "type": "layout_block",
+          "named": true
+        },
+        {
+          "type": "lyric_mode",
+          "named": true
+        },
+        {
+          "type": "lyricsto",
+          "named": true
+        },
+        {
+          "type": "markup",
           "named": true
         },
         {
@@ -634,6 +927,200 @@
         }
       ]
     }
+  },
+  {
+    "type": "lyric_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "duration",
+          "named": true
+        },
+        {
+          "type": "lyric_extender",
+          "named": true
+        },
+        {
+          "type": "lyric_hyphen",
+          "named": true
+        },
+        {
+          "type": "lyric_skip",
+          "named": true
+        },
+        {
+          "type": "lyric_word",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lyric_mode",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "context_modification",
+          "named": true
+        },
+        {
+          "type": "lyric_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lyric_skip",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "duration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lyricsto",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "lyric_block",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "markup",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "markup_block",
+          "named": true
+        },
+        {
+          "type": "markup_command",
+          "named": true
+        },
+        {
+          "type": "markup_word",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "markup_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "embedded_scm",
+          "named": true
+        },
+        {
+          "type": "markup_block",
+          "named": true
+        },
+        {
+          "type": "markup_command",
+          "named": true
+        },
+        {
+          "type": "markup_word",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "markup_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "embedded_scm",
+          "named": true
+        },
+        {
+          "type": "markup_block",
+          "named": true
+        },
+        {
+          "type": "markup_command",
+          "named": true
+        },
+        {
+          "type": "markup_command_name",
+          "named": true
+        },
+        {
+          "type": "number_expression",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "markup_command_name",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "midi_block",
@@ -686,6 +1173,10 @@
       "required": false,
       "types": [
         {
+          "type": "addlyrics",
+          "named": true
+        },
+        {
           "type": "chord",
           "named": true
         },
@@ -695,6 +1186,14 @@
         },
         {
           "type": "context_expression",
+          "named": true
+        },
+        {
+          "type": "lyricsto",
+          "named": true
+        },
+        {
+          "type": "markup",
           "named": true
         },
         {
@@ -1117,6 +1616,41 @@
     "fields": {}
   },
   {
+    "type": "scheme_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "scheme_boolean",
+          "named": true
+        },
+        {
+          "type": "scheme_list",
+          "named": true
+        },
+        {
+          "type": "scheme_number",
+          "named": true
+        },
+        {
+          "type": "scheme_string",
+          "named": true
+        },
+        {
+          "type": "scheme_symbol",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "scheme_number",
     "named": true,
     "fields": {},
@@ -1125,7 +1659,30 @@
       "required": true,
       "types": [
         {
+          "type": "fraction",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
           "type": "unsigned",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "scheme_string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
           "named": true
         }
       ]
@@ -1155,6 +1712,10 @@
       "required": false,
       "types": [
         {
+          "type": "chord_mode",
+          "named": true
+        },
+        {
           "type": "comment",
           "named": true
         },
@@ -1167,11 +1728,23 @@
           "named": true
         },
         {
+          "type": "figure_mode",
+          "named": true
+        },
+        {
           "type": "header_block",
           "named": true
         },
         {
           "type": "layout_block",
+          "named": true
+        },
+        {
+          "type": "lyric_mode",
+          "named": true
+        },
+        {
+          "type": "markup",
           "named": true
         },
         {
@@ -1238,6 +1811,10 @@
       "required": false,
       "types": [
         {
+          "type": "addlyrics",
+          "named": true
+        },
+        {
           "type": "chord",
           "named": true
         },
@@ -1247,6 +1824,14 @@
         },
         {
           "type": "context_expression",
+          "named": true
+        },
+        {
+          "type": "lyricsto",
+          "named": true
+        },
+        {
+          "type": "markup",
           "named": true
         },
         {
@@ -1302,6 +1887,16 @@
         }
       ]
     }
+  },
+  {
+    "type": "slur_close",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "slur_open",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "unset_expression",
@@ -1367,6 +1962,18 @@
     "named": false
   },
   {
+    "type": "'(",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
     "type": "*",
     "named": false
   },
@@ -1391,6 +1998,38 @@
     "named": false
   },
   {
+    "type": "11",
+    "named": false
+  },
+  {
+    "type": "13",
+    "named": false
+  },
+  {
+    "type": "3",
+    "named": false
+  },
+  {
+    "type": "5",
+    "named": false
+  },
+  {
+    "type": "6",
+    "named": false
+  },
+  {
+    "type": "7",
+    "named": false
+  },
+  {
+    "type": "9",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
     "type": "<",
     "named": false
   },
@@ -1411,7 +2050,15 @@
     "named": false
   },
   {
+    "type": "[",
+    "named": false
+  },
+  {
     "type": "\\!",
+    "named": false
+  },
+  {
+    "type": "\\+",
     "named": false
   },
   {
@@ -1420,6 +2067,10 @@
   },
   {
     "type": "\\>",
+    "named": false
+  },
+  {
+    "type": "\\abs-fontsize",
     "named": false
   },
   {
@@ -1435,11 +2086,19 @@
     "named": false
   },
   {
+    "type": "\\addlyrics",
+    "named": false
+  },
+  {
     "type": "\\alias",
     "named": false
   },
   {
     "type": "\\alternative",
+    "named": false
+  },
+  {
+    "type": "\\bold",
     "named": false
   },
   {
@@ -1451,7 +2110,43 @@
     "named": false
   },
   {
+    "type": "\\box",
+    "named": false
+  },
+  {
     "type": "\\breve",
+    "named": false
+  },
+  {
+    "type": "\\caps",
+    "named": false
+  },
+  {
+    "type": "\\center-column",
+    "named": false
+  },
+  {
+    "type": "\\chordmode",
+    "named": false
+  },
+  {
+    "type": "\\chords",
+    "named": false
+  },
+  {
+    "type": "\\circle",
+    "named": false
+  },
+  {
+    "type": "\\column",
+    "named": false
+  },
+  {
+    "type": "\\combine",
+    "named": false
+  },
+  {
+    "type": "\\concat",
     "named": false
   },
   {
@@ -1491,6 +2186,10 @@
     "named": false
   },
   {
+    "type": "\\dynamic",
+    "named": false
+  },
+  {
     "type": "\\espressivo",
     "named": false
   },
@@ -1519,11 +2218,31 @@
     "named": false
   },
   {
+    "type": "\\figuremode",
+    "named": false
+  },
+  {
+    "type": "\\figures",
+    "named": false
+  },
+  {
+    "type": "\\fill-line",
+    "named": false
+  },
+  {
     "type": "\\fixed",
     "named": false
   },
   {
     "type": "\\flageolet",
+    "named": false
+  },
+  {
+    "type": "\\flat",
+    "named": false
+  },
+  {
+    "type": "\\fontsize",
     "named": false
   },
   {
@@ -1539,6 +2258,26 @@
     "named": false
   },
   {
+    "type": "\\hspace",
+    "named": false
+  },
+  {
+    "type": "\\huge",
+    "named": false
+  },
+  {
+    "type": "\\italic",
+    "named": false
+  },
+  {
+    "type": "\\justify",
+    "named": false
+  },
+  {
+    "type": "\\large",
+    "named": false
+  },
+  {
     "type": "\\layout",
     "named": false
   },
@@ -1547,7 +2286,15 @@
     "named": false
   },
   {
+    "type": "\\line",
+    "named": false
+  },
+  {
     "type": "\\longa",
+    "named": false
+  },
+  {
+    "type": "\\lower",
     "named": false
   },
   {
@@ -1555,7 +2302,27 @@
     "named": false
   },
   {
+    "type": "\\lyricmode",
+    "named": false
+  },
+  {
+    "type": "\\lyrics",
+    "named": false
+  },
+  {
+    "type": "\\lyricsto",
+    "named": false
+  },
+  {
+    "type": "\\magnify",
+    "named": false
+  },
+  {
     "type": "\\marcato",
+    "named": false
+  },
+  {
+    "type": "\\markup",
     "named": false
   },
   {
@@ -1579,11 +2346,31 @@
     "named": false
   },
   {
+    "type": "\\natural",
+    "named": false
+  },
+  {
     "type": "\\new",
     "named": false
   },
   {
+    "type": "\\normalsize",
+    "named": false
+  },
+  {
+    "type": "\\note",
+    "named": false
+  },
+  {
+    "type": "\\note-by-number",
+    "named": false
+  },
+  {
     "type": "\\open",
+    "named": false
+  },
+  {
+    "type": "\\oval",
     "named": false
   },
   {
@@ -1592,6 +2379,10 @@
   },
   {
     "type": "\\p",
+    "named": false
+  },
+  {
+    "type": "\\pad-around",
     "named": false
   },
   {
@@ -1620,6 +2411,10 @@
   },
   {
     "type": "\\prall",
+    "named": false
+  },
+  {
+    "type": "\\raise",
     "named": false
   },
   {
@@ -1671,6 +2466,18 @@
     "named": false
   },
   {
+    "type": "\\sharp",
+    "named": false
+  },
+  {
+    "type": "\\small",
+    "named": false
+  },
+  {
+    "type": "\\smallCaps",
+    "named": false
+  },
+  {
     "type": "\\snappizzicato",
     "named": false
   },
@@ -1695,11 +2502,31 @@
     "named": false
   },
   {
+    "type": "\\sub",
+    "named": false
+  },
+  {
+    "type": "\\super",
+    "named": false
+  },
+  {
+    "type": "\\teeny",
+    "named": false
+  },
+  {
     "type": "\\tenuto",
     "named": false
   },
   {
     "type": "\\thumb",
+    "named": false
+  },
+  {
+    "type": "\\tiny",
+    "named": false
+  },
+  {
+    "type": "\\translate",
     "named": false
   },
   {
@@ -1715,6 +2542,10 @@
     "named": false
   },
   {
+    "type": "\\underline",
+    "named": false
+  },
+  {
     "type": "\\unset",
     "named": false
   },
@@ -1727,7 +2558,19 @@
     "named": false
   },
   {
+    "type": "\\vspace",
+    "named": false
+  },
+  {
     "type": "\\with",
+    "named": false
+  },
+  {
+    "type": "\\wordwrap",
+    "named": false
+  },
+  {
+    "type": "]",
     "named": false
   },
   {
@@ -1739,16 +2582,16 @@
     "named": false
   },
   {
-    "type": "beam_close",
-    "named": true
-  },
-  {
-    "type": "beam_open",
-    "named": true
+    "type": "aug",
+    "named": false
   },
   {
     "type": "block_comment",
     "named": true
+  },
+  {
+    "type": "dim",
+    "named": false
   },
   {
     "type": "es",
@@ -1779,6 +2622,34 @@
     "named": true
   },
   {
+    "type": "lyric_extender",
+    "named": true
+  },
+  {
+    "type": "lyric_hyphen",
+    "named": true
+  },
+  {
+    "type": "lyric_word",
+    "named": true
+  },
+  {
+    "type": "m",
+    "named": false
+  },
+  {
+    "type": "maj",
+    "named": false
+  },
+  {
+    "type": "markup_word",
+    "named": true
+  },
+  {
+    "type": "min",
+    "named": false
+  },
+  {
     "type": "pitch_name",
     "named": true
   },
@@ -1795,16 +2666,12 @@
     "named": false
   },
   {
-    "type": "slur_close",
-    "named": true
-  },
-  {
-    "type": "slur_open",
-    "named": true
-  },
-  {
     "type": "string",
     "named": true
+  },
+  {
+    "type": "sus",
+    "named": false
   },
   {
     "type": "symbol",

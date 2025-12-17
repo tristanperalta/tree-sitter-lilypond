@@ -1,0 +1,267 @@
+=================
+simultaneous music empty
+=================
+<< >>
+
+---
+
+(lilypond
+  (simultaneous_music))
+
+=================
+simultaneous music with sequential blocks
+=================
+<< { c d e } { g a b } >>
+
+---
+
+(lilypond
+  (simultaneous_music
+    (music
+      (note
+        (pitch
+          (pitch_name)))
+      (note
+        (pitch
+          (pitch_name)))
+      (note
+        (pitch
+          (pitch_name))))
+    (music
+      (note
+        (pitch
+          (pitch_name)))
+      (note
+        (pitch
+          (pitch_name)))
+      (note
+        (pitch
+          (pitch_name))))))
+
+=================
+nested simultaneous in sequential
+=================
+{ << c d >> e }
+
+---
+
+(lilypond
+  (music
+    (simultaneous_music
+      (note
+        (pitch
+          (pitch_name)))
+      (note
+        (pitch
+          (pitch_name))))
+    (note
+      (pitch
+        (pitch_name)))))
+
+=================
+tie
+=================
+{ c~ c }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (tie)))
+    (note
+      (pitch
+        (pitch_name)))))
+
+=================
+tie with duration
+=================
+{ c4~ c4 }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (duration
+        (duration_value))
+      (post_event
+        (tie)))
+    (note
+      (pitch
+        (pitch_name))
+      (duration
+        (duration_value)))))
+
+=================
+slur
+=================
+{ c( d e) }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (slur_open)))
+    (note
+      (pitch
+        (pitch_name)))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (slur_close)))))
+
+=================
+slur with durations
+=================
+{ c4( d8 e4) }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (duration
+        (duration_value))
+      (post_event
+        (slur_open)))
+    (note
+      (pitch
+        (pitch_name))
+      (duration
+        (duration_value)))
+    (note
+      (pitch
+        (pitch_name))
+      (duration
+        (duration_value))
+      (post_event
+        (slur_close)))))
+
+=================
+beam
+=================
+{ c8[ d e] }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (duration
+        (duration_value))
+      (post_event
+        (beam_open)))
+    (note
+      (pitch
+        (pitch_name)))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (beam_close)))))
+
+=================
+beam with explicit durations
+=================
+{ c8[ d8 e8] }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (duration
+        (duration_value))
+      (post_event
+        (beam_open)))
+    (note
+      (pitch
+        (pitch_name))
+      (duration
+        (duration_value)))
+    (note
+      (pitch
+        (pitch_name))
+      (duration
+        (duration_value))
+      (post_event
+        (beam_close)))))
+
+=================
+multiple post events
+=================
+{ c8[( d e]) }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (duration
+        (duration_value))
+      (post_event
+        (beam_open))
+      (post_event
+        (slur_open)))
+    (note
+      (pitch
+        (pitch_name)))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (beam_close))
+      (post_event
+        (slur_close)))))
+
+=================
+score with simultaneous
+=================
+\score {
+  << { c d e } { g a b } >>
+}
+
+---
+
+(lilypond
+  (score_block
+    (simultaneous_music
+      (music
+        (note
+          (pitch
+            (pitch_name)))
+        (note
+          (pitch
+            (pitch_name)))
+        (note
+          (pitch
+            (pitch_name))))
+      (music
+        (note
+          (pitch
+            (pitch_name)))
+        (note
+          (pitch
+            (pitch_name)))
+        (note
+          (pitch
+            (pitch_name)))))))

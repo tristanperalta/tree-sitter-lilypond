@@ -1,0 +1,328 @@
+=================
+lyricmode simple
+=================
+\lyricmode { la la la }
+
+---
+
+(lilypond
+  (lyric_mode
+    (lyric_block
+      (lyric_word)
+      (lyric_word)
+      (lyric_word))))
+
+=================
+lyrics alias
+=================
+\lyrics { hello world }
+
+---
+
+(lilypond
+  (lyric_mode
+    (lyric_block
+      (lyric_word)
+      (lyric_word))))
+
+=================
+lyric with duration
+=================
+\lyricmode { la4 la la }
+
+---
+
+(lilypond
+  (lyric_mode
+    (lyric_block
+      (lyric_word)
+      (lyric_word)
+      (lyric_word))))
+
+=================
+lyric with extender
+=================
+\lyricmode { hold __ }
+
+---
+
+(lilypond
+  (lyric_mode
+    (lyric_block
+      (lyric_word)
+      (lyric_extender))))
+
+=================
+lyric with hyphen
+=================
+\lyricmode { syl -- la -- ble }
+
+---
+
+(lilypond
+  (lyric_mode
+    (lyric_block
+      (lyric_word)
+      (lyric_hyphen)
+      (lyric_word)
+      (lyric_hyphen)
+      (lyric_word))))
+
+=================
+lyric with skip
+=================
+\lyricmode { la s4 la }
+
+---
+
+(lilypond
+  (lyric_mode
+    (lyric_block
+      (lyric_word)
+      (lyric_word)
+      (lyric_word))))
+
+=================
+addlyrics
+=================
+{ c d e } \addlyrics { la la la }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name)))
+    (note
+      (pitch
+        (pitch_name)))
+    (note
+      (pitch
+        (pitch_name))))
+  (addlyrics
+    (lyric_block
+      (lyric_word)
+      (lyric_word)
+      (lyric_word))))
+
+=================
+lyricsto
+=================
+\lyricsto "melody" { la la }
+
+---
+
+(lilypond
+  (lyricsto
+    (string)
+    (lyric_block
+      (lyric_word)
+      (lyric_word))))
+
+=================
+figuremode simple
+=================
+\figuremode { <6>4 }
+
+---
+
+(lilypond
+  (figure_mode
+    (figure_block
+      (figure_group
+        (figure
+          (figure_number))
+        (duration
+          (duration_value))))))
+
+=================
+figures alias
+=================
+\figures { <5>4 }
+
+---
+
+(lilypond
+  (figure_mode
+    (figure_block
+      (figure_group
+        (figure
+          (figure_number))
+        (duration
+          (duration_value))))))
+
+=================
+figure with multiple numbers
+=================
+\figuremode { <6 4>4 }
+
+---
+
+(lilypond
+  (figure_mode
+    (figure_block
+      (figure_group
+        (figure
+          (figure_number))
+        (figure
+          (figure_number))
+        (duration
+          (duration_value))))))
+
+=================
+figure with modifier
+=================
+\figuremode { <6+>4 }
+
+---
+
+(lilypond
+  (figure_mode
+    (figure_block
+      (figure_group
+        (figure
+          (figure_number)
+          (figure_modifier))
+        (duration
+          (duration_value))))))
+
+=================
+figure with placeholder
+=================
+\figuremode { <_ 6>4 }
+
+---
+
+(lilypond
+  (figure_mode
+    (figure_block
+      (figure_group
+        (figure)
+        (figure
+          (figure_number))
+        (duration
+          (duration_value))))))
+
+=================
+chordmode simple
+=================
+\chordmode { c4 }
+
+---
+
+(lilypond
+  (chord_mode
+    (chord_body_block
+      (chord_name
+        (pitch
+          (pitch_name))
+        (duration
+          (duration_value))))))
+
+=================
+chords alias
+=================
+\chords { c4 }
+
+---
+
+(lilypond
+  (chord_mode
+    (chord_body_block
+      (chord_name
+        (pitch
+          (pitch_name))
+        (duration
+          (duration_value))))))
+
+=================
+chord with quality
+=================
+\chordmode { c:maj4 }
+
+---
+
+(lilypond
+  (chord_mode
+    (chord_body_block
+      (chord_name
+        (pitch
+          (pitch_name))
+        (chord_quality
+          (chord_modifier))
+        (duration
+          (duration_value))))))
+
+=================
+chord with seventh
+=================
+\chordmode { c:7 }
+
+---
+
+(lilypond
+  (chord_mode
+    (chord_body_block
+      (chord_name
+        (pitch
+          (pitch_name))
+        (chord_quality
+          (chord_modifier))))))
+
+=================
+chord with minor
+=================
+\chordmode { c:m }
+
+---
+
+(lilypond
+  (chord_mode
+    (chord_body_block
+      (chord_name
+        (pitch
+          (pitch_name))
+        (chord_quality
+          (chord_modifier))))))
+
+=================
+chord with inversion
+=================
+\chordmode { c/e4 }
+
+---
+
+(lilypond
+  (chord_mode
+    (chord_body_block
+      (chord_name
+        (pitch
+          (pitch_name))
+        (chord_inversion
+          (pitch
+            (pitch_name)))
+        (duration
+          (duration_value))))))
+
+=================
+chord complex
+=================
+\chordmode { c:maj7/g4 }
+
+---
+
+(lilypond
+  (chord_mode
+    (chord_body_block
+      (chord_name
+        (pitch
+          (pitch_name))
+        (chord_quality
+          (chord_modifier)
+          (chord_modifier))
+        (chord_inversion
+          (pitch
+            (pitch_name)))
+        (duration
+          (duration_value))))))

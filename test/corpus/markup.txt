@@ -1,0 +1,194 @@
+=================
+simple markup with block
+=================
+\markup { Hello }
+
+---
+
+(lilypond
+  (markup
+    (markup_block
+      (markup_word))))
+
+=================
+markup with string
+=================
+\markup "Hello World"
+
+---
+
+(lilypond
+  (markup
+    (string)))
+
+=================
+markup with word
+=================
+\markup Hello
+
+---
+
+(lilypond
+  (markup
+    (markup_word)))
+
+=================
+markup multiple words
+=================
+\markup { Hello World }
+
+---
+
+(lilypond
+  (markup
+    (markup_block
+      (markup_word)
+      (markup_word))))
+
+=================
+markup bold command
+=================
+\markup \bold { Hello }
+
+---
+
+(lilypond
+  (markup
+    (markup_command
+      (markup_command_name)
+      (markup_block
+        (markup_word)))))
+
+=================
+markup italic command
+=================
+\markup \italic { text }
+
+---
+
+(lilypond
+  (markup
+    (markup_command
+      (markup_command_name)
+      (markup_block
+        (markup_word)))))
+
+=================
+markup nested commands
+=================
+\markup \bold \italic { text }
+
+---
+
+(lilypond
+  (markup
+    (markup_command
+      (markup_command_name)
+      (markup_command
+        (markup_command_name)
+        (markup_block
+          (markup_word))))))
+
+=================
+markup column
+=================
+\markup \column { line1 line2 }
+
+---
+
+(lilypond
+  (markup
+    (markup_command
+      (markup_command_name)
+      (markup_block
+        (markup_word)
+        (markup_word)))))
+
+=================
+markup with string argument
+=================
+\markup \bold "Hello"
+
+---
+
+(lilypond
+  (markup
+    (markup_command
+      (markup_command_name)
+      (string))))
+
+=================
+markup fontsize
+=================
+\markup \fontsize #5 { big }
+
+---
+
+(lilypond
+  (markup
+    (markup_command
+      (markup_command_name)
+      (embedded_scm
+        (scheme_number
+          (unsigned)))
+      (markup_block
+        (markup_word)))))
+
+=================
+scheme list
+=================
+#(set-global-staff-size 20)
+
+---
+
+(lilypond
+  (embedded_scm
+    (scheme_list
+      (symbol)
+      (scheme_number
+        (unsigned)))))
+
+=================
+scheme quoted list
+=================
+#'(1 2 3)
+
+---
+
+(lilypond
+  (embedded_scm
+    (scheme_list
+      (scheme_number
+        (unsigned))
+      (scheme_number
+        (unsigned))
+      (scheme_number
+        (unsigned)))))
+
+=================
+scheme nested list
+=================
+#(list 'a 'b)
+
+---
+
+(lilypond
+  (embedded_scm
+    (scheme_list
+      (symbol)
+      (scheme_symbol
+        (symbol))
+      (scheme_symbol
+        (symbol)))))
+
+=================
+scheme with string
+=================
+#"hello"
+
+---
+
+(lilypond
+  (embedded_scm
+    (scheme_string
+      (string))))

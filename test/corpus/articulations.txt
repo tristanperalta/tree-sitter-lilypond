@@ -1,0 +1,445 @@
+=================
+staccato with direction
+=================
+{ c-. d-. e-. }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (script_direction)
+          (articulation_mark))))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (script_direction)
+          (articulation_mark))))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (script_direction)
+          (articulation_mark))))))
+
+=================
+accent
+=================
+{ c-> d-> }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (script_direction)
+          (articulation_mark))))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (script_direction)
+          (articulation_mark))))))
+
+=================
+staccatissimo
+=================
+{ c-! }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (script_direction)
+          (articulation_mark))))))
+
+=================
+up direction staccato
+=================
+{ c^. }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (script_direction)
+          (articulation_mark))))))
+
+=================
+down direction accent
+=================
+{ c_> }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (script_direction)
+          (articulation_mark))))))
+
+=================
+articulation command
+=================
+{ c\staccato d\accent e\tenuto }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (articulation_command))))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (articulation_command))))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (articulation_command))))))
+
+=================
+articulation command with direction
+=================
+{ c^\fermata d_\trill }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (script_direction)
+          (articulation_command))))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (script_direction)
+          (articulation_command))))))
+
+=================
+dynamic p
+=================
+{ c\p d e }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (dynamic
+          (dynamic_mark))))
+    (note
+      (pitch
+        (pitch_name)))
+    (note
+      (pitch
+        (pitch_name)))))
+
+=================
+dynamic ff
+=================
+{ c\ff }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (dynamic
+          (dynamic_mark))))))
+
+=================
+multiple dynamics
+=================
+{ c\pp d\mf e\fff }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (dynamic
+          (dynamic_mark))))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (dynamic
+          (dynamic_mark))))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (dynamic
+          (dynamic_mark))))))
+
+=================
+crescendo hairpin
+=================
+{ c\< d e\! }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (dynamic
+          (hairpin))))
+    (note
+      (pitch
+        (pitch_name)))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (dynamic
+          (hairpin))))))
+
+=================
+decrescendo hairpin
+=================
+{ c\> d e\! }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (dynamic
+          (hairpin))))
+    (note
+      (pitch
+        (pitch_name)))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (dynamic
+          (hairpin))))))
+
+=================
+fingering
+=================
+{ c-1 d-2 e-3 }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (fingering
+          (script_direction)
+          (fingering_number))))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (fingering
+          (script_direction)
+          (fingering_number))))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (fingering
+          (script_direction)
+          (fingering_number))))))
+
+=================
+fingering with direction
+=================
+{ c^1 d_2 }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (fingering
+          (script_direction)
+          (fingering_number))))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (fingering
+          (script_direction)
+          (fingering_number))))))
+
+=================
+combined articulation and dynamic
+=================
+{ c-.\p d->\f }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (script_direction)
+          (articulation_mark)))
+      (post_event
+        (dynamic
+          (dynamic_mark))))
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (script_direction)
+          (articulation_mark)))
+      (post_event
+        (dynamic
+          (dynamic_mark))))))
+
+=================
+articulation dynamic fingering
+=================
+{ c-.-1\p }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (articulation
+          (script_direction)
+          (articulation_mark)))
+      (post_event
+        (fingering
+          (script_direction)
+          (fingering_number)))
+      (post_event
+        (dynamic
+          (dynamic_mark))))))
+
+=================
+chord with articulation
+=================
+{ <c e g>-. }
+
+---
+
+(lilypond
+  (music
+    (chord
+      (chord_element
+        (pitch
+          (pitch_name)))
+      (chord_element
+        (pitch
+          (pitch_name)))
+      (chord_element
+        (pitch
+          (pitch_name)))
+      (post_event
+        (articulation
+          (script_direction)
+          (articulation_mark))))))
+
+=================
+chord with dynamic
+=================
+{ <c e g>\ff }
+
+---
+
+(lilypond
+  (music
+    (chord
+      (chord_element
+        (pitch
+          (pitch_name)))
+      (chord_element
+        (pitch
+          (pitch_name)))
+      (chord_element
+        (pitch
+          (pitch_name)))
+      (post_event
+        (dynamic
+          (dynamic_mark))))))
+
+=================
+sforzando
+=================
+{ c\sfz }
+
+---
+
+(lilypond
+  (music
+    (note
+      (pitch
+        (pitch_name))
+      (post_event
+        (dynamic
+          (dynamic_mark))))))

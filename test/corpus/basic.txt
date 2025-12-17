@@ -4,8 +4,10 @@ version statement
 \version "2.24.0"
 
 ---
+
 (lilypond
-  (version_statement (version_number)))
+  (version_statement
+    (version_number)))
 
 =================
 line comment
@@ -13,8 +15,10 @@ line comment
 % this is a comment
 
 ---
+
 (lilypond
-  (comment (line_comment)))
+  (comment
+    (line_comment)))
 
 =================
 block comment
@@ -22,8 +26,10 @@ block comment
 %{ this is a block comment %}
 
 ---
+
 (lilypond
-  (comment (block_comment)))
+  (comment
+    (block_comment)))
 
 =================
 unsigned number
@@ -31,14 +37,17 @@ unsigned number
 \paper { indent = 0 }
 
 ---
+
 (lilypond
   (paper_block
     (assignment
-      (assignment_id (symbol))
+      (assignment_id
+        (symbol))
       (number_expression
         (number_term
           (number_factor
-            (bare_number (unsigned))))))))
+            (bare_number
+              (unsigned))))))))
 
 =================
 real number
@@ -46,14 +55,17 @@ real number
 \paper { indent = 2.5 }
 
 ---
+
 (lilypond
   (paper_block
     (assignment
-      (assignment_id (symbol))
+      (assignment_id
+        (symbol))
       (number_expression
         (number_term
           (number_factor
-            (bare_number (real))))))))
+            (bare_number
+              (real))))))))
 
 =================
 fraction
@@ -61,14 +73,17 @@ fraction
 \paper { indent = 3/4 }
 
 ---
+
 (lilypond
   (paper_block
     (assignment
-      (assignment_id (symbol))
+      (assignment_id
+        (symbol))
       (number_expression
         (number_term
           (number_factor
-            (bare_number (fraction))))))))
+            (bare_number
+              (fraction))))))))
 
 =================
 negative number
@@ -76,14 +91,18 @@ negative number
 \paper { indent = -5 }
 
 ---
+
 (lilypond
   (paper_block
     (assignment
-      (assignment_id (symbol))
+      (assignment_id
+        (symbol))
       (number_expression
         (number_term
           (number_factor
-            (bare_number (unsigned))))))))
+            (number_factor
+              (bare_number
+                (unsigned)))))))))
 
 =================
 number expression addition
@@ -91,18 +110,22 @@ number expression addition
 \paper { x = 2 + 3 }
 
 ---
+
 (lilypond
   (paper_block
     (assignment
-      (assignment_id (symbol))
+      (assignment_id
+        (symbol))
       (number_expression
         (number_expression
           (number_term
             (number_factor
-              (bare_number (unsigned)))))
+              (bare_number
+                (unsigned)))))
         (number_term
           (number_factor
-            (bare_number (unsigned))))))))
+            (bare_number
+              (unsigned))))))))
 
 =================
 number expression multiplication
@@ -110,17 +133,21 @@ number expression multiplication
 \paper { x = 2 * 3 }
 
 ---
+
 (lilypond
   (paper_block
     (assignment
-      (assignment_id (symbol))
+      (assignment_id
+        (symbol))
       (number_expression
         (number_term
           (number_term
             (number_factor
-              (bare_number (unsigned))))
+              (bare_number
+                (unsigned))))
           (number_factor
-            (bare_number (unsigned))))))))
+            (bare_number
+              (unsigned))))))))
 
 =================
 number expression precedence
@@ -128,21 +155,26 @@ number expression precedence
 \paper { x = 2 + 3 * 4 }
 
 ---
+
 (lilypond
   (paper_block
     (assignment
-      (assignment_id (symbol))
+      (assignment_id
+        (symbol))
       (number_expression
         (number_expression
           (number_term
             (number_factor
-              (bare_number (unsigned)))))
+              (bare_number
+                (unsigned)))))
         (number_term
           (number_term
             (number_factor
-              (bare_number (unsigned))))
+              (bare_number
+                (unsigned))))
           (number_factor
-            (bare_number (unsigned))))))))
+            (bare_number
+              (unsigned))))))))
 
 =================
 string with escapes
@@ -150,10 +182,12 @@ string with escapes
 \header { title = "Hello \"World\"" }
 
 ---
+
 (lilypond
   (header_block
     (assignment
-      (assignment_id (symbol))
+      (assignment_id
+        (symbol))
       (string))))
 
 =================
@@ -162,6 +196,7 @@ empty header
 \header { }
 
 ---
+
 (lilypond
   (header_block))
 
@@ -171,6 +206,7 @@ empty score
 \score { }
 
 ---
+
 (lilypond
   (score_block))
 
@@ -182,14 +218,17 @@ layout block
 }
 
 ---
+
 (lilypond
   (layout_block
     (assignment
-      (assignment_id (symbol))
+      (assignment_id
+        (symbol))
       (number_expression
         (number_term
           (number_factor
-            (bare_number (unsigned))))))))
+            (bare_number
+              (unsigned))))))))
 
 =================
 midi block
@@ -199,14 +238,17 @@ midi block
 }
 
 ---
+
 (lilypond
   (midi_block
     (assignment
-      (assignment_id (symbol))
+      (assignment_id
+        (symbol))
       (number_expression
         (number_term
           (number_factor
-            (bare_number (unsigned))))))))
+            (bare_number
+              (unsigned))))))))
 
 =================
 scheme boolean true
@@ -214,11 +256,14 @@ scheme boolean true
 \header { x = ##t }
 
 ---
+
 (lilypond
   (header_block
     (assignment
-      (assignment_id (symbol))
-      (embedded_scm (scheme_boolean)))))
+      (assignment_id
+        (symbol))
+      (embedded_scm
+        (scheme_boolean)))))
 
 =================
 scheme boolean false
@@ -226,11 +271,14 @@ scheme boolean false
 \header { x = ##f }
 
 ---
+
 (lilypond
   (header_block
     (assignment
-      (assignment_id (symbol))
-      (embedded_scm (scheme_boolean)))))
+      (assignment_id
+        (symbol))
+      (embedded_scm
+        (scheme_boolean)))))
 
 =================
 scheme number
@@ -238,8 +286,12 @@ scheme number
 \header { x = #42 }
 
 ---
+
 (lilypond
   (header_block
     (assignment
-      (assignment_id (symbol))
-      (embedded_scm (scheme_number (unsigned))))))
+      (assignment_id
+        (symbol))
+      (embedded_scm
+        (scheme_number
+          (unsigned))))))

@@ -107,3 +107,36 @@
 
 ; Fingering
 (fingering_number) @number
+
+; Markup
+"\\markup" @keyword
+(markup_command_name) @function
+(markup_word) @string
+
+; Lyrics
+"\\lyricmode" @keyword
+"\\lyrics" @keyword
+"\\addlyrics" @keyword
+"\\lyricsto" @keyword
+(lyric_word) @string
+(lyric_extender) @operator
+(lyric_hyphen) @operator
+(lyric_skip) @keyword
+
+; Figured bass
+"\\figuremode" @keyword
+"\\figures" @keyword
+(figure_number) @number
+(figure_modifier) @operator
+(figure_rest) @keyword
+(figure_skip) @keyword
+
+; Chord mode
+"\\chordmode" @keyword
+"\\chords" @keyword
+(chord_modifier) @type
+":" @operator
+
+; Scheme
+(scheme_list) @embedded
+(scheme_string) @string
