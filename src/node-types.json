@@ -29,6 +29,10 @@
           "named": true
         },
         {
+          "type": "simultaneous_music",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         }
@@ -112,6 +116,10 @@
         {
           "type": "score_block",
           "named": true
+        },
+        {
+          "type": "simultaneous_music",
+          "named": true
         }
       ]
     }
@@ -146,6 +154,48 @@
         },
         {
           "type": "score_block",
+          "named": true
+        },
+        {
+          "type": "simultaneous_music",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "chord",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "chord_element",
+          "named": true
+        },
+        {
+          "type": "duration",
+          "named": true
+        },
+        {
+          "type": "post_event",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "chord_element",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "pitch",
           "named": true
         }
       ]
@@ -326,6 +376,10 @@
           "named": true
         },
         {
+          "type": "simultaneous_music",
+          "named": true
+        },
+        {
           "type": "version_statement",
           "named": true
         }
@@ -383,6 +437,10 @@
       "required": false,
       "types": [
         {
+          "type": "chord",
+          "named": true
+        },
+        {
           "type": "comment",
           "named": true
         },
@@ -396,6 +454,10 @@
         },
         {
           "type": "rest",
+          "named": true
+        },
+        {
+          "type": "simultaneous_music",
           "named": true
         },
         {
@@ -419,6 +481,10 @@
         },
         {
           "type": "pitch",
+          "named": true
+        },
+        {
+          "type": "post_event",
           "named": true
         }
       ]
@@ -557,15 +623,50 @@
     }
   },
   {
-    "type": "rest",
+    "type": "post_event",
     "named": true,
     "fields": {},
     "children": {
       "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "beam_close",
+          "named": true
+        },
+        {
+          "type": "beam_open",
+          "named": true
+        },
+        {
+          "type": "slur_close",
+          "named": true
+        },
+        {
+          "type": "slur_open",
+          "named": true
+        },
+        {
+          "type": "tie",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rest",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "duration",
+          "named": true
+        },
+        {
+          "type": "post_event",
           "named": true
         }
       ]
@@ -637,6 +738,49 @@
         {
           "type": "music",
           "named": true
+        },
+        {
+          "type": "simultaneous_music",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "simultaneous_music",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "chord",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "music",
+          "named": true
+        },
+        {
+          "type": "note",
+          "named": true
+        },
+        {
+          "type": "rest",
+          "named": true
+        },
+        {
+          "type": "simultaneous_music",
+          "named": true
+        },
+        {
+          "type": "skip",
+          "named": true
         }
       ]
     }
@@ -646,11 +790,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "duration",
+          "named": true
+        },
+        {
+          "type": "post_event",
           "named": true
         }
       ]
@@ -725,7 +873,23 @@
     "named": false
   },
   {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<<",
+    "named": false
+  },
+  {
     "type": "=",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">>",
     "named": false
   },
   {
@@ -773,6 +937,14 @@
     "named": false
   },
   {
+    "type": "beam_close",
+    "named": true
+  },
+  {
+    "type": "beam_open",
+    "named": true
+  },
+  {
     "type": "block_comment",
     "named": true
   },
@@ -817,11 +989,23 @@
     "named": false
   },
   {
+    "type": "slur_close",
+    "named": true
+  },
+  {
+    "type": "slur_open",
+    "named": true
+  },
+  {
     "type": "string",
     "named": true
   },
   {
     "type": "symbol",
+    "named": true
+  },
+  {
+    "type": "tie",
     "named": true
   },
   {

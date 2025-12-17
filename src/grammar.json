@@ -54,6 +54,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "simultaneous_music"
+        },
+        {
+          "type": "SYMBOL",
           "name": "embedded_scm"
         },
         {
@@ -219,6 +223,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "simultaneous_music"
+        },
+        {
+          "type": "SYMBOL",
           "name": "embedded_scm"
         },
         {
@@ -272,6 +280,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "simultaneous_music"
+        },
+        {
+          "type": "SYMBOL",
           "name": "embedded_scm"
         },
         {
@@ -322,6 +334,10 @@
         {
           "type": "SYMBOL",
           "name": "music"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "simultaneous_music"
         },
         {
           "type": "SYMBOL",
@@ -466,6 +482,10 @@
         {
           "type": "SYMBOL",
           "name": "music"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "simultaneous_music"
         },
         {
           "type": "SYMBOL",
@@ -722,6 +742,26 @@
         }
       ]
     },
+    "simultaneous_music": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<<"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_music_expression"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ">>"
+        }
+      ]
+    },
     "_music_expression": {
       "type": "CHOICE",
       "members": [
@@ -739,7 +779,15 @@
         },
         {
           "type": "SYMBOL",
+          "name": "chord"
+        },
+        {
+          "type": "SYMBOL",
           "name": "music"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "simultaneous_music"
         },
         {
           "type": "SYMBOL",
@@ -765,6 +813,13 @@
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "post_event"
+          }
         }
       ]
     },
@@ -786,6 +841,13 @@
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "post_event"
+          }
         }
       ]
     },
@@ -807,8 +869,103 @@
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "post_event"
+          }
         }
       ]
+    },
+    "chord": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "chord_element"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "duration"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "post_event"
+          }
+        }
+      ]
+    },
+    "chord_element": {
+      "type": "SYMBOL",
+      "name": "pitch"
+    },
+    "post_event": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "tie"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "slur_open"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "slur_close"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "beam_open"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "beam_close"
+        }
+      ]
+    },
+    "tie": {
+      "type": "STRING",
+      "value": "~"
+    },
+    "slur_open": {
+      "type": "STRING",
+      "value": "("
+    },
+    "slur_close": {
+      "type": "STRING",
+      "value": ")"
+    },
+    "beam_open": {
+      "type": "STRING",
+      "value": "["
+    },
+    "beam_close": {
+      "type": "STRING",
+      "value": "]"
     },
     "pitch": {
       "type": "SEQ",

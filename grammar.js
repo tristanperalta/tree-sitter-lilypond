@@ -1,9 +1,6 @@
 /**
  * Tree-sitter grammar for LilyPond music notation
- *
  * Based on LilyPond 2.24.4 parser (lily/parser.yy)
- * Milestone 1: Core Structure
- * Milestone 2: Music Basics
  */
 
 const PREC = {
@@ -33,15 +30,12 @@ module.exports = grammar({
       $.midi_block,
       $.assignment,
       $.music,
+      $.simultaneous_music,
       $.embedded_scm,
       $.comment,
-      // Future milestones:
-      // $.full_markup,
     ),
 
-    // ==========================================================================
-    // Comments (Step 1.2)
-    // ==========================================================================
+    // Comments
 
     comment: $ => choice(
       $.line_comment,
@@ -50,25 +44,20 @@ module.exports = grammar({
 
     line_comment: $ => token(seq('%', /[^{\n][^\n]*/)),
 
-    // Simple block comment (non-nested) - will be replaced by external scanner
     block_comment: $ => token(seq(
       '%{',
       /[^%]*(%+[^%}][^%]*)*/,
       '%}'
     )),
 
-    // ==========================================================================
-    // Version Statement (Step 1.3)
-    // ==========================================================================
+    // Version
 
     version_statement: $ => seq(
       '\\version',
       alias($.string, $.version_number),
     ),
 
-    // ==========================================================================
-    // Header Block (Step 1.4)
-    // ==========================================================================
+    // Header
 
     header_block: $ => seq(
       '\\header',
@@ -83,9 +72,7 @@ module.exports = grammar({
       $.comment,
     ),
 
-    // ==========================================================================
-    // Book Structure (Step 1.5)
-    // ==========================================================================
+    // Book structure
 
     book_block: $ => seq(
       '\\book',
@@ -100,10 +87,9 @@ module.exports = grammar({
       $.score_block,
       $.paper_block,
       $.music,
+      $.simultaneous_music,
       $.embedded_scm,
       $.comment,
-      // Future milestones:
-      // $.full_markup,
     ),
 
     bookpart_block: $ => seq(
@@ -118,10 +104,9 @@ module.exports = grammar({
       $.score_block,
       $.paper_block,
       $.music,
+      $.simultaneous_music,
       $.embedded_scm,
       $.comment,
-      // Future milestones:
-      // $.full_markup,
     ),
 
     score_block: $ => seq(
@@ -136,13 +121,12 @@ module.exports = grammar({
       $.layout_block,
       $.midi_block,
       $.music,
+      $.simultaneous_music,
       $.embedded_scm,
       $.comment,
     ),
 
-    // ==========================================================================
-    // Output Definitions (Step 1.5)
-    // ==========================================================================
+    // Output definitions
 
     paper_block: $ => seq(
       '\\paper',
@@ -169,12 +153,9 @@ module.exports = grammar({
       $.assignment,
       $.embedded_scm,
       $.comment,
-      // Future: $.context_def
     ),
 
-    // ==========================================================================
-    // Assignments (Step 1.4, 1.5)
-    // ==========================================================================
+    // Assignments
 
     assignment: $ => seq(
       $.assignment_id,
@@ -191,14 +172,11 @@ module.exports = grammar({
       $.string,
       $.number_expression,
       $.music,
+      $.simultaneous_music,
       $.embedded_scm,
-      // Future milestones:
-      // $.markup,
     ),
 
-    // ==========================================================================
-    // Number Expressions (Step 1.6)
-    // ==========================================================================
+    // Number expressions
 
     number_expression: $ => choice(
       prec.left(PREC.NUMBER_ADD, seq($.number_expression, '+', $.number_term)),
@@ -223,87 +201,100 @@ module.exports = grammar({
       $.fraction,
     ),
 
-    // ==========================================================================
-    // Basic Tokens (Step 1.1)
-    // ==========================================================================
+    // Basic tokens
 
-    // Unsigned integer: 0, 123, 456
     unsigned: $ => /[0-9]+/,
-
-    // Real number: 3.14, .5, 0.123
     real: $ => /[0-9]*\.[0-9]+/,
-
-    // Fraction: 3/4, 1/2
     fraction: $ => /[0-9]+\/[0-9]+/,
-
-    // String with escape handling
     string: $ => /"([^"\\]|\\.)*"/,
-
-    // Symbol/identifier
     symbol: $ => /[a-zA-Z][a-zA-Z0-9_-]*/,
 
-    // ==========================================================================
-    // Embedded Scheme (Step 1.8) - Placeholder
-    // ==========================================================================
+    // Embedded Scheme
 
-    // Basic embedded Scheme - will be expanded with external scanner
     embedded_scm: $ => seq(
       '#',
       choice(
         $.scheme_boolean,
         $.scheme_number,
         $.scheme_symbol,
-        // $.scheme_expression - requires external scanner for balanced parens
       ),
     ),
 
     scheme_boolean: $ => choice('##t', '##f', '#t', '#f'),
-
     scheme_number: $ => $.unsigned,
-
     scheme_symbol: $ => seq("'", $.symbol),
 
-    // ==========================================================================
-    // Music (M2)
-    // ==========================================================================
+    // Music
 
-    // Sequential music block
     music: $ => seq(
       '{',
       repeat($._music_expression),
       '}',
     ),
 
+    simultaneous_music: $ => seq(
+      '<<',
+      repeat($._music_expression),
+      '>>',
+    ),
+
     _music_expression: $ => choice(
       $.note,
       $.rest,
       $.skip,
-      $.music,  // nested sequential
+      $.chord,
+      $.music,
+      $.simultaneous_music,
       $.comment,
     ),
 
-    // ==========================================================================
-    // Notes, Rests, Skips (M2)
-    // ==========================================================================
+    // Notes, rests, skips, chords
 
     note: $ => seq(
       $.pitch,
       optional($.duration),
+      repeat($.post_event),
     ),
 
     rest: $ => seq(
       'r',
       optional($.duration),
+      repeat($.post_event),
     ),
 
     skip: $ => seq(
       's',
       optional($.duration),
+      repeat($.post_event),
     ),
 
-    // ==========================================================================
-    // Pitch (M2)
-    // ==========================================================================
+    chord: $ => seq(
+      '<',
+      repeat1($.chord_element),
+      '>',
+      optional($.duration),
+      repeat($.post_event),
+    ),
+
+    chord_element: $ => $.pitch,
+
+    // Post-events
+
+    post_event: $ => choice(
+      $.tie,
+      $.slur_open,
+      $.slur_close,
+      $.beam_open,
+      $.beam_close,
+    ),
+
+    tie: $ => '~',
+    slur_open: $ => '(',
+    slur_close: $ => ')',
+    beam_open: $ => '[',
+    beam_close: $ => ']',
+
+    // Pitch
 
     pitch: $ => seq(
       $.pitch_name,
@@ -311,18 +302,15 @@ module.exports = grammar({
       optional($.octave),
     ),
 
-    // Base pitch names: c, d, e, f, g, a, b
     pitch_name: $ => /[a-g]/,
 
-    // Accidentals
     accidental: $ => choice(
-      'isis',  // double sharp (must come before 'is')
-      'eses',  // double flat (must come before 'es')
-      'is',    // sharp
-      'es',    // flat
+      'isis',
+      'eses',
+      'is',
+      'es',
     ),
 
-    // Octave marks
     octave: $ => choice(
       $.octave_up,
       $.octave_down,
@@ -331,9 +319,7 @@ module.exports = grammar({
     octave_up: $ => repeat1("'"),
     octave_down: $ => repeat1(","),
 
-    // ==========================================================================
-    // Duration (M2)
-    // ==========================================================================
+    // Duration
 
     duration: $ => seq(
       $.duration_value,
@@ -341,18 +327,15 @@ module.exports = grammar({
       repeat($.multiplier),
     ),
 
-    // Duration values (powers of 2, plus special values)
     duration_value: $ => choice(
       '\\breve',
       '\\longa',
       '\\maxima',
-      /[0-9]+/,  // 1, 2, 4, 8, 16, 32, 64, 128, 256
+      /[0-9]+/,
     ),
 
-    // Dots
     dots: $ => repeat1('.'),
 
-    // Multiplier
     multiplier: $ => seq(
       '*',
       choice($.unsigned, $.fraction),

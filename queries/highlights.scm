@@ -37,7 +37,7 @@
 (scheme_symbol) @variable
 "#" @punctuation.special
 
-; Music (M2)
+; Music
 (pitch_name) @variable.parameter
 (accidental) @operator
 (octave_up) @operator
@@ -53,3 +53,14 @@
 ; Punctuation
 "{" @punctuation.bracket
 "}" @punctuation.bracket
+"<<" @punctuation.bracket
+">>" @punctuation.bracket
+"<" @punctuation.bracket
+">" @punctuation.bracket
+
+; Post-events
+(tie) @operator
+(slur_open) @punctuation.special
+(slur_close) @punctuation.special
+(beam_open) @punctuation.special
+(beam_close) @punctuation.special
