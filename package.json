@@ -1,7 +1,7 @@
 {
   "name": "tree-sitter-lilypond",
   "version": "1.0.0",
-  "description": "",
+  "description": "Tree-sitter grammar for LilyPond music notation",
   "main": "bindings/node",
   "scripts": {
     "test": "tree-sitter test",
@@ -10,10 +10,19 @@
   "author": "Tristan Peralta",
   "license": "ISC",
   "dependencies": {
-    "nan": "^2.16.0"
+    "node-addon-api": "^8.3.0",
+    "node-gyp-build": "^4.8.4"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.20.7"
+    "tree-sitter-cli": "^0.26.3"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.22.4"
+  },
+  "peerDependenciesMeta": {
+    "tree-sitter": {
+      "optional": true
+    }
   },
   "tree-sitter": [
     {
