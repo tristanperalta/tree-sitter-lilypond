@@ -1421,6 +1421,18 @@
         {
           "type": "SYMBOL",
           "name": "beam_close"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "articulation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dynamic"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "fingering"
         }
       ]
     },
@@ -1443,6 +1455,332 @@
     "beam_close": {
       "type": "STRING",
       "value": "]"
+    },
+    "articulation": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "script_direction"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "articulation_mark"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "script_direction"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "SYMBOL",
+              "name": "articulation_command"
+            }
+          ]
+        }
+      ]
+    },
+    "script_direction": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "^"
+        },
+        {
+          "type": "STRING",
+          "value": "_"
+        },
+        {
+          "type": "STRING",
+          "value": "-"
+        }
+      ]
+    },
+    "articulation_mark": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        },
+        {
+          "type": "STRING",
+          "value": "!"
+        },
+        {
+          "type": "STRING",
+          "value": "+"
+        }
+      ]
+    },
+    "articulation_command": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\accent"
+        },
+        {
+          "type": "STRING",
+          "value": "\\staccato"
+        },
+        {
+          "type": "STRING",
+          "value": "\\staccatissimo"
+        },
+        {
+          "type": "STRING",
+          "value": "\\tenuto"
+        },
+        {
+          "type": "STRING",
+          "value": "\\marcato"
+        },
+        {
+          "type": "STRING",
+          "value": "\\portato"
+        },
+        {
+          "type": "STRING",
+          "value": "\\trill"
+        },
+        {
+          "type": "STRING",
+          "value": "\\turn"
+        },
+        {
+          "type": "STRING",
+          "value": "\\mordent"
+        },
+        {
+          "type": "STRING",
+          "value": "\\prall"
+        },
+        {
+          "type": "STRING",
+          "value": "\\fermata"
+        },
+        {
+          "type": "STRING",
+          "value": "\\upbow"
+        },
+        {
+          "type": "STRING",
+          "value": "\\downbow"
+        },
+        {
+          "type": "STRING",
+          "value": "\\open"
+        },
+        {
+          "type": "STRING",
+          "value": "\\stopped"
+        },
+        {
+          "type": "STRING",
+          "value": "\\flageolet"
+        },
+        {
+          "type": "STRING",
+          "value": "\\thumb"
+        },
+        {
+          "type": "STRING",
+          "value": "\\lheel"
+        },
+        {
+          "type": "STRING",
+          "value": "\\rheel"
+        },
+        {
+          "type": "STRING",
+          "value": "\\ltoe"
+        },
+        {
+          "type": "STRING",
+          "value": "\\rtoe"
+        },
+        {
+          "type": "STRING",
+          "value": "\\snappizzicato"
+        },
+        {
+          "type": "STRING",
+          "value": "\\espressivo"
+        }
+      ]
+    },
+    "dynamic": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "dynamic_mark"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "hairpin"
+        }
+      ]
+    },
+    "dynamic_mark": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\ppppp"
+        },
+        {
+          "type": "STRING",
+          "value": "\\pppp"
+        },
+        {
+          "type": "STRING",
+          "value": "\\ppp"
+        },
+        {
+          "type": "STRING",
+          "value": "\\pp"
+        },
+        {
+          "type": "STRING",
+          "value": "\\p"
+        },
+        {
+          "type": "STRING",
+          "value": "\\mp"
+        },
+        {
+          "type": "STRING",
+          "value": "\\mf"
+        },
+        {
+          "type": "STRING",
+          "value": "\\f"
+        },
+        {
+          "type": "STRING",
+          "value": "\\ff"
+        },
+        {
+          "type": "STRING",
+          "value": "\\fff"
+        },
+        {
+          "type": "STRING",
+          "value": "\\ffff"
+        },
+        {
+          "type": "STRING",
+          "value": "\\fffff"
+        },
+        {
+          "type": "STRING",
+          "value": "\\fp"
+        },
+        {
+          "type": "STRING",
+          "value": "\\sf"
+        },
+        {
+          "type": "STRING",
+          "value": "\\sfz"
+        },
+        {
+          "type": "STRING",
+          "value": "\\sff"
+        },
+        {
+          "type": "STRING",
+          "value": "\\fz"
+        },
+        {
+          "type": "STRING",
+          "value": "\\rfz"
+        },
+        {
+          "type": "STRING",
+          "value": "\\sp"
+        },
+        {
+          "type": "STRING",
+          "value": "\\spp"
+        }
+      ]
+    },
+    "hairpin": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\<"
+        },
+        {
+          "type": "STRING",
+          "value": "\\>"
+        },
+        {
+          "type": "STRING",
+          "value": "\\!"
+        },
+        {
+          "type": "STRING",
+          "value": "\\cr"
+        },
+        {
+          "type": "STRING",
+          "value": "\\decr"
+        },
+        {
+          "type": "STRING",
+          "value": "\\cresc"
+        },
+        {
+          "type": "STRING",
+          "value": "\\decresc"
+        },
+        {
+          "type": "STRING",
+          "value": "\\dim"
+        }
+      ]
+    },
+    "fingering": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "script_direction"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "fingering_number"
+        }
+      ]
+    },
+    "fingering_number": {
+      "type": "PATTERN",
+      "value": "[0-5]"
     },
     "pitch": {
       "type": "SEQ",

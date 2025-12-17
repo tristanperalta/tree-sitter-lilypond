@@ -416,6 +416,9 @@ module.exports = grammar({
       $.slur_close,
       $.beam_open,
       $.beam_close,
+      $.articulation,
+      $.dynamic,
+      $.fingering,
     ),
 
     tie: $ => '~',
@@ -423,6 +426,82 @@ module.exports = grammar({
     slur_close: $ => ')',
     beam_open: $ => '[',
     beam_close: $ => ']',
+
+    // Articulations
+
+    articulation: $ => choice(
+      seq($.script_direction, $.articulation_mark),
+      seq(optional($.script_direction), $.articulation_command),
+    ),
+
+    script_direction: $ => choice('^', '_', '-'),
+
+    articulation_mark: $ => choice(
+      '.',
+      '>',
+      '!',
+      '+',
+    ),
+
+    articulation_command: $ => choice(
+      '\\accent',
+      '\\staccato',
+      '\\staccatissimo',
+      '\\tenuto',
+      '\\marcato',
+      '\\portato',
+      '\\trill',
+      '\\turn',
+      '\\mordent',
+      '\\prall',
+      '\\fermata',
+      '\\upbow',
+      '\\downbow',
+      '\\open',
+      '\\stopped',
+      '\\flageolet',
+      '\\thumb',
+      '\\lheel',
+      '\\rheel',
+      '\\ltoe',
+      '\\rtoe',
+      '\\snappizzicato',
+      '\\espressivo',
+    ),
+
+    // Dynamics
+
+    dynamic: $ => choice(
+      $.dynamic_mark,
+      $.hairpin,
+    ),
+
+    dynamic_mark: $ => choice(
+      '\\ppppp', '\\pppp', '\\ppp', '\\pp', '\\p',
+      '\\mp', '\\mf',
+      '\\f', '\\ff', '\\fff', '\\ffff', '\\fffff',
+      '\\fp', '\\sf', '\\sfz', '\\sff', '\\fz', '\\rfz', '\\sp', '\\spp',
+    ),
+
+    hairpin: $ => choice(
+      '\\<',
+      '\\>',
+      '\\!',
+      '\\cr',
+      '\\decr',
+      '\\cresc',
+      '\\decresc',
+      '\\dim',
+    ),
+
+    // Fingering
+
+    fingering: $ => seq(
+      $.script_direction,
+      $.fingering_number,
+    ),
+
+    fingering_number: $ => /[0-5]/,
 
     // Pitch
 

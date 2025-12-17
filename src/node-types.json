@@ -36,6 +36,39 @@
     }
   },
   {
+    "type": "articulation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "articulation_command",
+          "named": true
+        },
+        {
+          "type": "articulation_mark",
+          "named": true
+        },
+        {
+          "type": "script_direction",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "articulation_command",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "articulation_mark",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "assignment",
     "named": true,
     "fields": {},
@@ -410,6 +443,30 @@
     "fields": {}
   },
   {
+    "type": "dynamic",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dynamic_mark",
+          "named": true
+        },
+        {
+          "type": "hairpin",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dynamic_mark",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "embedded_scm",
     "named": true,
     "fields": {},
@@ -431,6 +488,30 @@
         }
       ]
     }
+  },
+  {
+    "type": "fingering",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fingering_number",
+          "named": true
+        },
+        {
+          "type": "script_direction",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "hairpin",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "header_block",
@@ -877,11 +958,23 @@
       "required": true,
       "types": [
         {
+          "type": "articulation",
+          "named": true
+        },
+        {
           "type": "beam_close",
           "named": true
         },
         {
           "type": "beam_open",
+          "named": true
+        },
+        {
+          "type": "dynamic",
+          "named": true
+        },
+        {
+          "type": "fingering",
           "named": true
         },
         {
@@ -1105,6 +1198,11 @@
     }
   },
   {
+    "type": "script_direction",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "set_expression",
     "named": true,
     "fields": {},
@@ -1241,6 +1339,10 @@
     }
   },
   {
+    "type": "!",
+    "named": false
+  },
+  {
     "type": "#",
     "named": false
   },
@@ -1309,7 +1411,23 @@
     "named": false
   },
   {
+    "type": "\\!",
+    "named": false
+  },
+  {
+    "type": "\\<",
+    "named": false
+  },
+  {
+    "type": "\\>",
+    "named": false
+  },
+  {
     "type": "\\absolute",
+    "named": false
+  },
+  {
+    "type": "\\accent",
     "named": false
   },
   {
@@ -1345,11 +1463,75 @@
     "named": false
   },
   {
+    "type": "\\cr",
+    "named": false
+  },
+  {
+    "type": "\\cresc",
+    "named": false
+  },
+  {
+    "type": "\\decr",
+    "named": false
+  },
+  {
+    "type": "\\decresc",
+    "named": false
+  },
+  {
     "type": "\\denies",
     "named": false
   },
   {
+    "type": "\\dim",
+    "named": false
+  },
+  {
+    "type": "\\downbow",
+    "named": false
+  },
+  {
+    "type": "\\espressivo",
+    "named": false
+  },
+  {
+    "type": "\\f",
+    "named": false
+  },
+  {
+    "type": "\\fermata",
+    "named": false
+  },
+  {
+    "type": "\\ff",
+    "named": false
+  },
+  {
+    "type": "\\fff",
+    "named": false
+  },
+  {
+    "type": "\\ffff",
+    "named": false
+  },
+  {
+    "type": "\\fffff",
+    "named": false
+  },
+  {
     "type": "\\fixed",
+    "named": false
+  },
+  {
+    "type": "\\flageolet",
+    "named": false
+  },
+  {
+    "type": "\\fp",
+    "named": false
+  },
+  {
+    "type": "\\fz",
     "named": false
   },
   {
@@ -1361,7 +1543,19 @@
     "named": false
   },
   {
+    "type": "\\lheel",
+    "named": false
+  },
+  {
     "type": "\\longa",
+    "named": false
+  },
+  {
+    "type": "\\ltoe",
+    "named": false
+  },
+  {
+    "type": "\\marcato",
     "named": false
   },
   {
@@ -1369,7 +1563,19 @@
     "named": false
   },
   {
+    "type": "\\mf",
+    "named": false
+  },
+  {
     "type": "\\midi",
+    "named": false
+  },
+  {
+    "type": "\\mordent",
+    "named": false
+  },
+  {
+    "type": "\\mp",
     "named": false
   },
   {
@@ -1377,11 +1583,43 @@
     "named": false
   },
   {
+    "type": "\\open",
+    "named": false
+  },
+  {
     "type": "\\override",
     "named": false
   },
   {
+    "type": "\\p",
+    "named": false
+  },
+  {
     "type": "\\paper",
+    "named": false
+  },
+  {
+    "type": "\\portato",
+    "named": false
+  },
+  {
+    "type": "\\pp",
+    "named": false
+  },
+  {
+    "type": "\\ppp",
+    "named": false
+  },
+  {
+    "type": "\\pppp",
+    "named": false
+  },
+  {
+    "type": "\\ppppp",
+    "named": false
+  },
+  {
+    "type": "\\prall",
     "named": false
   },
   {
@@ -1401,6 +1639,18 @@
     "named": false
   },
   {
+    "type": "\\rfz",
+    "named": false
+  },
+  {
+    "type": "\\rheel",
+    "named": false
+  },
+  {
+    "type": "\\rtoe",
+    "named": false
+  },
+  {
     "type": "\\score",
     "named": false
   },
@@ -1409,11 +1659,67 @@
     "named": false
   },
   {
+    "type": "\\sf",
+    "named": false
+  },
+  {
+    "type": "\\sff",
+    "named": false
+  },
+  {
+    "type": "\\sfz",
+    "named": false
+  },
+  {
+    "type": "\\snappizzicato",
+    "named": false
+  },
+  {
+    "type": "\\sp",
+    "named": false
+  },
+  {
+    "type": "\\spp",
+    "named": false
+  },
+  {
+    "type": "\\staccatissimo",
+    "named": false
+  },
+  {
+    "type": "\\staccato",
+    "named": false
+  },
+  {
+    "type": "\\stopped",
+    "named": false
+  },
+  {
+    "type": "\\tenuto",
+    "named": false
+  },
+  {
+    "type": "\\thumb",
+    "named": false
+  },
+  {
     "type": "\\transpose",
     "named": false
   },
   {
+    "type": "\\trill",
+    "named": false
+  },
+  {
+    "type": "\\turn",
+    "named": false
+  },
+  {
     "type": "\\unset",
+    "named": false
+  },
+  {
+    "type": "\\upbow",
     "named": false
   },
   {
@@ -1422,6 +1728,14 @@
   },
   {
     "type": "\\with",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "_",
     "named": false
   },
   {
@@ -1443,6 +1757,10 @@
   {
     "type": "eses",
     "named": false
+  },
+  {
+    "type": "fingering_number",
+    "named": true
   },
   {
     "type": "fraction",

@@ -95,3 +95,15 @@
 (slur_close) @punctuation.special
 (beam_open) @punctuation.special
 (beam_close) @punctuation.special
+
+; Articulations
+(script_direction) @operator
+(articulation_mark) @operator
+(articulation_command) @function
+
+; Dynamics
+(dynamic_mark) @function.builtin
+(hairpin) @function.builtin
+
+; Fingering
+(fingering_number) @number
