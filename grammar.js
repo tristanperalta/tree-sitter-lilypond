@@ -31,6 +31,9 @@ module.exports = grammar({
       $.assignment,
       $.music,
       $.simultaneous_music,
+      $.context_expression,
+      $.repeat_expression,
+      $.music_function,
       $.embedded_scm,
       $.comment,
     ),
@@ -88,6 +91,9 @@ module.exports = grammar({
       $.paper_block,
       $.music,
       $.simultaneous_music,
+      $.context_expression,
+      $.repeat_expression,
+      $.music_function,
       $.embedded_scm,
       $.comment,
     ),
@@ -105,6 +111,9 @@ module.exports = grammar({
       $.paper_block,
       $.music,
       $.simultaneous_music,
+      $.context_expression,
+      $.repeat_expression,
+      $.music_function,
       $.embedded_scm,
       $.comment,
     ),
@@ -122,6 +131,9 @@ module.exports = grammar({
       $.midi_block,
       $.music,
       $.simultaneous_music,
+      $.context_expression,
+      $.repeat_expression,
+      $.music_function,
       $.embedded_scm,
       $.comment,
     ),
@@ -173,6 +185,9 @@ module.exports = grammar({
       $.number_expression,
       $.music,
       $.simultaneous_music,
+      $.context_expression,
+      $.repeat_expression,
+      $.music_function,
       $.embedded_scm,
     ),
 
@@ -238,6 +253,117 @@ module.exports = grammar({
       '>>',
     ),
 
+    // Context
+
+    context_expression: $ => seq(
+      choice('\\new', '\\context'),
+      $.symbol,
+      optional(seq('=', $.string)),
+      optional($.context_modification),
+      $._contextable_music,
+    ),
+
+    _contextable_music: $ => choice(
+      $.music,
+      $.simultaneous_music,
+      $.context_expression,
+      $.repeat_expression,
+      $.music_function,
+    ),
+
+    context_modification: $ => seq(
+      '\\with',
+      '{',
+      repeat($._context_mod),
+      '}',
+    ),
+
+    _context_mod: $ => choice(
+      $.context_def_mod,
+      $.assignment,
+      $.embedded_scm,
+      $.comment,
+    ),
+
+    context_def_mod: $ => seq(
+      choice('\\consists', '\\remove', '\\accepts', '\\denies', '\\alias'),
+      choice($.string, $.symbol),
+    ),
+
+    // Property operations
+
+    property_expression: $ => choice(
+      $.override_expression,
+      $.set_expression,
+      $.revert_expression,
+      $.unset_expression,
+    ),
+
+    override_expression: $ => seq(
+      '\\override',
+      $.property_path,
+      '=',
+      $._scalar,
+    ),
+
+    set_expression: $ => seq(
+      '\\set',
+      $.property_path,
+      '=',
+      $._scalar,
+    ),
+
+    revert_expression: $ => seq(
+      '\\revert',
+      $.property_path,
+    ),
+
+    unset_expression: $ => seq(
+      '\\unset',
+      $.property_path,
+    ),
+
+    property_path: $ => seq(
+      $.symbol,
+      repeat(seq('.', $.symbol)),
+    ),
+
+    _scalar: $ => choice(
+      $.string,
+      $.number_expression,
+      $.embedded_scm,
+    ),
+
+    // Repeat
+
+    repeat_expression: $ => prec.right(seq(
+      '\\repeat',
+      $.symbol,
+      $.unsigned,
+      $._contextable_music,
+      optional($.alternative_expression),
+    )),
+
+    alternative_expression: $ => seq(
+      '\\alternative',
+      '{',
+      repeat($._contextable_music),
+      '}',
+    ),
+
+    // Music functions
+
+    music_function: $ => seq(
+      choice(
+        '\\relative',
+        '\\transpose',
+        '\\fixed',
+        '\\absolute',
+      ),
+      repeat($.pitch),
+      $._contextable_music,
+    ),
+
     _music_expression: $ => choice(
       $.note,
       $.rest,
@@ -245,6 +371,10 @@ module.exports = grammar({
       $.chord,
       $.music,
       $.simultaneous_music,
+      $.context_expression,
+      $.property_expression,
+      $.repeat_expression,
+      $.music_function,
       $.comment,
     ),
 

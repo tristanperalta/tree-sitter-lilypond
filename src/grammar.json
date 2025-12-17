@@ -58,6 +58,18 @@
         },
         {
           "type": "SYMBOL",
+          "name": "context_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "repeat_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "music_function"
+        },
+        {
+          "type": "SYMBOL",
           "name": "embedded_scm"
         },
         {
@@ -227,6 +239,18 @@
         },
         {
           "type": "SYMBOL",
+          "name": "context_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "repeat_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "music_function"
+        },
+        {
+          "type": "SYMBOL",
           "name": "embedded_scm"
         },
         {
@@ -284,6 +308,18 @@
         },
         {
           "type": "SYMBOL",
+          "name": "context_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "repeat_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "music_function"
+        },
+        {
+          "type": "SYMBOL",
           "name": "embedded_scm"
         },
         {
@@ -338,6 +374,18 @@
         {
           "type": "SYMBOL",
           "name": "simultaneous_music"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "context_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "repeat_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "music_function"
         },
         {
           "type": "SYMBOL",
@@ -486,6 +534,18 @@
         {
           "type": "SYMBOL",
           "name": "simultaneous_music"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "context_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "repeat_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "music_function"
         },
         {
           "type": "SYMBOL",
@@ -762,6 +822,407 @@
         }
       ]
     },
+    "context_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\\new"
+            },
+            {
+              "type": "STRING",
+              "value": "\\context"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "symbol"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "="
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "string"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "context_modification"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_contextable_music"
+        }
+      ]
+    },
+    "_contextable_music": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "music"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "simultaneous_music"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "context_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "repeat_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "music_function"
+        }
+      ]
+    },
+    "context_modification": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\with"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_context_mod"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "_context_mod": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "context_def_mod"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "assignment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "embedded_scm"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comment"
+        }
+      ]
+    },
+    "context_def_mod": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\\consists"
+            },
+            {
+              "type": "STRING",
+              "value": "\\remove"
+            },
+            {
+              "type": "STRING",
+              "value": "\\accepts"
+            },
+            {
+              "type": "STRING",
+              "value": "\\denies"
+            },
+            {
+              "type": "STRING",
+              "value": "\\alias"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "string"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "symbol"
+            }
+          ]
+        }
+      ]
+    },
+    "property_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "override_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "set_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "revert_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unset_expression"
+        }
+      ]
+    },
+    "override_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\override"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "property_path"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_scalar"
+        }
+      ]
+    },
+    "set_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\set"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "property_path"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_scalar"
+        }
+      ]
+    },
+    "revert_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\revert"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "property_path"
+        }
+      ]
+    },
+    "unset_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\unset"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "property_path"
+        }
+      ]
+    },
+    "property_path": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "symbol"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "."
+              },
+              {
+                "type": "SYMBOL",
+                "name": "symbol"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "_scalar": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "embedded_scm"
+        }
+      ]
+    },
+    "repeat_expression": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\\repeat"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "symbol"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "unsigned"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_contextable_music"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "alternative_expression"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "alternative_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\alternative"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_contextable_music"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "music_function": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\\relative"
+            },
+            {
+              "type": "STRING",
+              "value": "\\transpose"
+            },
+            {
+              "type": "STRING",
+              "value": "\\fixed"
+            },
+            {
+              "type": "STRING",
+              "value": "\\absolute"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "pitch"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_contextable_music"
+        }
+      ]
+    },
     "_music_expression": {
       "type": "CHOICE",
       "members": [
@@ -788,6 +1249,22 @@
         {
           "type": "SYMBOL",
           "name": "simultaneous_music"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "context_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "property_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "repeat_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "music_function"
         },
         {
           "type": "SYMBOL",

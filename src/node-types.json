@@ -5,6 +5,37 @@
     "fields": {}
   },
   {
+    "type": "alternative_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "context_expression",
+          "named": true
+        },
+        {
+          "type": "music",
+          "named": true
+        },
+        {
+          "type": "music_function",
+          "named": true
+        },
+        {
+          "type": "repeat_expression",
+          "named": true
+        },
+        {
+          "type": "simultaneous_music",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "assignment",
     "named": true,
     "fields": {},
@@ -17,6 +48,10 @@
           "named": true
         },
         {
+          "type": "context_expression",
+          "named": true
+        },
+        {
           "type": "embedded_scm",
           "named": true
         },
@@ -25,7 +60,15 @@
           "named": true
         },
         {
+          "type": "music_function",
+          "named": true
+        },
+        {
           "type": "number_expression",
+          "named": true
+        },
+        {
+          "type": "repeat_expression",
           "named": true
         },
         {
@@ -98,6 +141,10 @@
           "named": true
         },
         {
+          "type": "context_expression",
+          "named": true
+        },
+        {
           "type": "embedded_scm",
           "named": true
         },
@@ -110,7 +157,15 @@
           "named": true
         },
         {
+          "type": "music_function",
+          "named": true
+        },
+        {
           "type": "paper_block",
+          "named": true
+        },
+        {
+          "type": "repeat_expression",
           "named": true
         },
         {
@@ -137,6 +192,10 @@
           "named": true
         },
         {
+          "type": "context_expression",
+          "named": true
+        },
+        {
           "type": "embedded_scm",
           "named": true
         },
@@ -149,7 +208,15 @@
           "named": true
         },
         {
+          "type": "music_function",
+          "named": true
+        },
+        {
           "type": "paper_block",
+          "named": true
+        },
+        {
+          "type": "repeat_expression",
           "named": true
         },
         {
@@ -215,6 +282,95 @@
         },
         {
           "type": "line_comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "context_def_mod",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "context_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "context_expression",
+          "named": true
+        },
+        {
+          "type": "context_modification",
+          "named": true
+        },
+        {
+          "type": "music",
+          "named": true
+        },
+        {
+          "type": "music_function",
+          "named": true
+        },
+        {
+          "type": "repeat_expression",
+          "named": true
+        },
+        {
+          "type": "simultaneous_music",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "context_modification",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "context_def_mod",
+          "named": true
+        },
+        {
+          "type": "embedded_scm",
           "named": true
         }
       ]
@@ -348,6 +504,10 @@
           "named": true
         },
         {
+          "type": "context_expression",
+          "named": true
+        },
+        {
           "type": "embedded_scm",
           "named": true
         },
@@ -368,7 +528,15 @@
           "named": true
         },
         {
+          "type": "music_function",
+          "named": true
+        },
+        {
           "type": "paper_block",
+          "named": true
+        },
+        {
+          "type": "repeat_expression",
           "named": true
         },
         {
@@ -445,11 +613,27 @@
           "named": true
         },
         {
+          "type": "context_expression",
+          "named": true
+        },
+        {
           "type": "music",
           "named": true
         },
         {
+          "type": "music_function",
+          "named": true
+        },
+        {
           "type": "note",
+          "named": true
+        },
+        {
+          "type": "property_expression",
+          "named": true
+        },
+        {
+          "type": "repeat_expression",
           "named": true
         },
         {
@@ -462,6 +646,41 @@
         },
         {
           "type": "skip",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "music_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "context_expression",
+          "named": true
+        },
+        {
+          "type": "music",
+          "named": true
+        },
+        {
+          "type": "music_function",
+          "named": true
+        },
+        {
+          "type": "pitch",
+          "named": true
+        },
+        {
+          "type": "repeat_expression",
+          "named": true
+        },
+        {
+          "type": "simultaneous_music",
           "named": true
         }
       ]
@@ -577,6 +796,33 @@
     "fields": {}
   },
   {
+    "type": "override_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "embedded_scm",
+          "named": true
+        },
+        {
+          "type": "number_expression",
+          "named": true
+        },
+        {
+          "type": "property_path",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "paper_block",
     "named": true,
     "fields": {},
@@ -654,6 +900,91 @@
     }
   },
   {
+    "type": "property_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "override_expression",
+          "named": true
+        },
+        {
+          "type": "revert_expression",
+          "named": true
+        },
+        {
+          "type": "set_expression",
+          "named": true
+        },
+        {
+          "type": "unset_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "property_path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "repeat_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "alternative_expression",
+          "named": true
+        },
+        {
+          "type": "context_expression",
+          "named": true
+        },
+        {
+          "type": "music",
+          "named": true
+        },
+        {
+          "type": "music_function",
+          "named": true
+        },
+        {
+          "type": "repeat_expression",
+          "named": true
+        },
+        {
+          "type": "simultaneous_music",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unsigned",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "rest",
     "named": true,
     "fields": {},
@@ -667,6 +998,21 @@
         },
         {
           "type": "post_event",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "revert_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "property_path",
           "named": true
         }
       ]
@@ -720,6 +1066,10 @@
           "named": true
         },
         {
+          "type": "context_expression",
+          "named": true
+        },
+        {
           "type": "embedded_scm",
           "named": true
         },
@@ -740,7 +1090,42 @@
           "named": true
         },
         {
+          "type": "music_function",
+          "named": true
+        },
+        {
+          "type": "repeat_expression",
+          "named": true
+        },
+        {
           "type": "simultaneous_music",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "set_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "embedded_scm",
+          "named": true
+        },
+        {
+          "type": "number_expression",
+          "named": true
+        },
+        {
+          "type": "property_path",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         }
       ]
@@ -763,11 +1148,27 @@
           "named": true
         },
         {
+          "type": "context_expression",
+          "named": true
+        },
+        {
           "type": "music",
           "named": true
         },
         {
+          "type": "music_function",
+          "named": true
+        },
+        {
           "type": "note",
+          "named": true
+        },
+        {
+          "type": "property_expression",
+          "named": true
+        },
+        {
+          "type": "repeat_expression",
           "named": true
         },
         {
@@ -799,6 +1200,21 @@
         },
         {
           "type": "post_event",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "unset_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "property_path",
           "named": true
         }
       ]
@@ -893,6 +1309,22 @@
     "named": false
   },
   {
+    "type": "\\absolute",
+    "named": false
+  },
+  {
+    "type": "\\accepts",
+    "named": false
+  },
+  {
+    "type": "\\alias",
+    "named": false
+  },
+  {
+    "type": "\\alternative",
+    "named": false
+  },
+  {
     "type": "\\book",
     "named": false
   },
@@ -902,6 +1334,22 @@
   },
   {
     "type": "\\breve",
+    "named": false
+  },
+  {
+    "type": "\\consists",
+    "named": false
+  },
+  {
+    "type": "\\context",
+    "named": false
+  },
+  {
+    "type": "\\denies",
+    "named": false
+  },
+  {
+    "type": "\\fixed",
     "named": false
   },
   {
@@ -925,7 +1373,31 @@
     "named": false
   },
   {
+    "type": "\\new",
+    "named": false
+  },
+  {
+    "type": "\\override",
+    "named": false
+  },
+  {
     "type": "\\paper",
+    "named": false
+  },
+  {
+    "type": "\\relative",
+    "named": false
+  },
+  {
+    "type": "\\remove",
+    "named": false
+  },
+  {
+    "type": "\\repeat",
+    "named": false
+  },
+  {
+    "type": "\\revert",
     "named": false
   },
   {
@@ -933,7 +1405,23 @@
     "named": false
   },
   {
+    "type": "\\set",
+    "named": false
+  },
+  {
+    "type": "\\transpose",
+    "named": false
+  },
+  {
+    "type": "\\unset",
+    "named": false
+  },
+  {
     "type": "\\version",
+    "named": false
+  },
+  {
+    "type": "\\with",
     "named": false
   },
   {

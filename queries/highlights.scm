@@ -21,6 +21,37 @@
 "\\layout" @keyword
 "\\midi" @keyword
 
+; Context commands
+"\\new" @keyword
+"\\context" @keyword
+"\\with" @keyword
+
+; Property commands
+"\\set" @keyword
+"\\override" @keyword
+"\\revert" @keyword
+"\\unset" @keyword
+
+; Context modifiers
+"\\consists" @keyword
+"\\remove" @keyword
+"\\accepts" @keyword
+"\\denies" @keyword
+"\\alias" @keyword
+
+; Repeat
+"\\repeat" @keyword
+"\\alternative" @keyword
+
+; Music functions
+"\\relative" @keyword
+"\\transpose" @keyword
+"\\fixed" @keyword
+"\\absolute" @keyword
+
+; Property paths
+(property_path) @property
+
 ; Identifiers
 (symbol) @variable
 

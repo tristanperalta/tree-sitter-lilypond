@@ -1,0 +1,298 @@
+=================
+new staff
+=================
+\new Staff { c d e }
+
+---
+(lilypond
+  (context_expression
+    (symbol)
+    (music
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))))
+
+=================
+new with id
+=================
+\new Staff = "main" { c d e }
+
+---
+(lilypond
+  (context_expression
+    (symbol)
+    (string)
+    (music
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))))
+
+=================
+context keyword
+=================
+\context Voice { c d e }
+
+---
+(lilypond
+  (context_expression
+    (symbol)
+    (music
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))))
+
+=================
+new with modification
+=================
+\new Staff \with { instrumentName = "Violin" } { c d e }
+
+---
+(lilypond
+  (context_expression
+    (symbol)
+    (context_modification
+      (assignment
+        (assignment_id (symbol))
+        (string)))
+    (music
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))))
+
+=================
+context modifier consists
+=================
+\new Staff \with { \consists "Some_engraver" } { c }
+
+---
+(lilypond
+  (context_expression
+    (symbol)
+    (context_modification
+      (context_def_mod (string)))
+    (music
+      (note (pitch (pitch_name))))))
+
+=================
+nested contexts
+=================
+\new Staff \new Voice { c d e }
+
+---
+(lilypond
+  (context_expression
+    (symbol)
+    (context_expression
+      (symbol)
+      (music
+        (note (pitch (pitch_name)))
+        (note (pitch (pitch_name)))
+        (note (pitch (pitch_name)))))))
+
+=================
+override
+=================
+{ \override Stem.length = 10 c d e }
+
+---
+(lilypond
+  (music
+    (property_expression
+      (override_expression
+        (property_path (symbol) (symbol))
+        (number_expression
+          (number_term
+            (number_factor
+              (bare_number (unsigned)))))))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))
+
+=================
+set
+=================
+{ \set Staff.instrumentName = "Flute" c }
+
+---
+(lilypond
+  (music
+    (property_expression
+      (set_expression
+        (property_path (symbol) (symbol))
+        (string)))
+    (note (pitch (pitch_name)))))
+
+=================
+revert
+=================
+{ \revert Stem.length c }
+
+---
+(lilypond
+  (music
+    (property_expression
+      (revert_expression
+        (property_path (symbol) (symbol))))
+    (note (pitch (pitch_name)))))
+
+=================
+unset
+=================
+{ \unset Staff.instrumentName c }
+
+---
+(lilypond
+  (music
+    (property_expression
+      (unset_expression
+        (property_path (symbol) (symbol))))
+    (note (pitch (pitch_name)))))
+
+=================
+repeat volta
+=================
+\repeat volta 2 { c d e }
+
+---
+(lilypond
+  (repeat_expression
+    (symbol)
+    (unsigned)
+    (music
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))))
+
+=================
+repeat with alternative
+=================
+\repeat volta 2 { c d e } \alternative { { f } { g } }
+
+---
+(lilypond
+  (repeat_expression
+    (symbol)
+    (unsigned)
+    (music
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))
+    (alternative_expression
+      (music
+        (note (pitch (pitch_name))))
+      (music
+        (note (pitch (pitch_name)))))))
+
+=================
+repeat unfold
+=================
+\repeat unfold 4 { c8 d }
+
+---
+(lilypond
+  (repeat_expression
+    (symbol)
+    (unsigned)
+    (music
+      (note (pitch (pitch_name)) (duration (duration_value)))
+      (note (pitch (pitch_name))))))
+
+=================
+relative
+=================
+\relative c' { c d e f g }
+
+---
+(lilypond
+  (music_function
+    (pitch (pitch_name) (octave (octave_up)))
+    (music
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))))
+
+=================
+relative without pitch
+=================
+\relative { c' d e }
+
+---
+(lilypond
+  (music_function
+    (music
+      (note (pitch (pitch_name) (octave (octave_up))))
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))))
+
+=================
+transpose
+=================
+\transpose c d { e f g }
+
+---
+(lilypond
+  (music_function
+    (pitch (pitch_name))
+    (pitch (pitch_name))
+    (music
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))))
+
+=================
+fixed
+=================
+\fixed c' { c d e }
+
+---
+(lilypond
+  (music_function
+    (pitch (pitch_name) (octave (octave_up)))
+    (music
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))))
+
+=================
+score with new staff
+=================
+\score {
+  \new Staff { c d e }
+}
+
+---
+(lilypond
+  (score_block
+    (context_expression
+      (symbol)
+      (music
+        (note (pitch (pitch_name)))
+        (note (pitch (pitch_name)))
+        (note (pitch (pitch_name)))))))
+
+=================
+simultaneous staves
+=================
+<<
+  \new Staff { c d e }
+  \new Staff { g a b }
+>>
+
+---
+(lilypond
+  (simultaneous_music
+    (context_expression
+      (symbol)
+      (music
+        (note (pitch (pitch_name)))
+        (note (pitch (pitch_name)))
+        (note (pitch (pitch_name)))))
+    (context_expression
+      (symbol)
+      (music
+        (note (pitch (pitch_name)))
+        (note (pitch (pitch_name)))
+        (note (pitch (pitch_name)))))))
+
