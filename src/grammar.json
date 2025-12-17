@@ -94,6 +94,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "partial"
+        },
+        {
+          "type": "SYMBOL",
           "name": "embedded_scm"
         },
         {
@@ -787,6 +791,10 @@
             {
               "type": "SYMBOL",
               "name": "scheme_list"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "symbol"
             }
           ]
         }
@@ -1810,6 +1818,544 @@
         }
       ]
     },
+    "time_signature": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\time"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "fraction"
+        }
+      ]
+    },
+    "key_signature": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\key"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pitch"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "key_mode"
+        }
+      ]
+    },
+    "key_mode": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\major"
+        },
+        {
+          "type": "STRING",
+          "value": "\\minor"
+        },
+        {
+          "type": "STRING",
+          "value": "\\ionian"
+        },
+        {
+          "type": "STRING",
+          "value": "\\dorian"
+        },
+        {
+          "type": "STRING",
+          "value": "\\phrygian"
+        },
+        {
+          "type": "STRING",
+          "value": "\\lydian"
+        },
+        {
+          "type": "STRING",
+          "value": "\\mixolydian"
+        },
+        {
+          "type": "STRING",
+          "value": "\\aeolian"
+        },
+        {
+          "type": "STRING",
+          "value": "\\locrian"
+        }
+      ]
+    },
+    "clef": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\clef"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "clef_name"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "string"
+            }
+          ]
+        }
+      ]
+    },
+    "clef_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "treble"
+        },
+        {
+          "type": "STRING",
+          "value": "bass"
+        },
+        {
+          "type": "STRING",
+          "value": "alto"
+        },
+        {
+          "type": "STRING",
+          "value": "tenor"
+        },
+        {
+          "type": "STRING",
+          "value": "soprano"
+        },
+        {
+          "type": "STRING",
+          "value": "mezzosoprano"
+        },
+        {
+          "type": "STRING",
+          "value": "baritone"
+        },
+        {
+          "type": "STRING",
+          "value": "varbaritone"
+        },
+        {
+          "type": "STRING",
+          "value": "subbass"
+        },
+        {
+          "type": "STRING",
+          "value": "french"
+        },
+        {
+          "type": "STRING",
+          "value": "percussion"
+        },
+        {
+          "type": "STRING",
+          "value": "tab"
+        },
+        {
+          "type": "STRING",
+          "value": "moderntab"
+        }
+      ]
+    },
+    "partial": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\partial"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "duration"
+        }
+      ]
+    },
+    "grace": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\grace"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_contextable_music"
+        }
+      ]
+    },
+    "acciaccatura": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\acciaccatura"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_contextable_music"
+        }
+      ]
+    },
+    "appoggiatura": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\appoggiatura"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_contextable_music"
+        }
+      ]
+    },
+    "tuplet": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\tuplet"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "fraction"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "duration"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_contextable_music"
+        }
+      ]
+    },
+    "times": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\times"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "fraction"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_contextable_music"
+        }
+      ]
+    },
+    "bar_check": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\bar"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        }
+      ]
+    },
+    "tempo": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\\tempo"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "duration"
+            },
+            {
+              "type": "STRING",
+              "value": "="
+            },
+            {
+              "type": "SYMBOL",
+              "name": "unsigned"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\\tempo"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "string"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "duration"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "="
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "unsigned"
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "segno": {
+      "type": "STRING",
+      "value": "\\segno"
+    },
+    "coda": {
+      "type": "STRING",
+      "value": "\\coda"
+    },
+    "fine": {
+      "type": "STRING",
+      "value": "\\fine"
+    },
+    "mark": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\mark"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "unsigned"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "string"
+            },
+            {
+              "type": "STRING",
+              "value": "\\default"
+            }
+          ]
+        }
+      ]
+    },
+    "direction_command": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\stemUp"
+        },
+        {
+          "type": "STRING",
+          "value": "\\stemDown"
+        },
+        {
+          "type": "STRING",
+          "value": "\\stemNeutral"
+        },
+        {
+          "type": "STRING",
+          "value": "\\slurUp"
+        },
+        {
+          "type": "STRING",
+          "value": "\\slurDown"
+        },
+        {
+          "type": "STRING",
+          "value": "\\slurNeutral"
+        },
+        {
+          "type": "STRING",
+          "value": "\\tieUp"
+        },
+        {
+          "type": "STRING",
+          "value": "\\tieDown"
+        },
+        {
+          "type": "STRING",
+          "value": "\\tieNeutral"
+        },
+        {
+          "type": "STRING",
+          "value": "\\phrasingSlurUp"
+        },
+        {
+          "type": "STRING",
+          "value": "\\phrasingSlurDown"
+        },
+        {
+          "type": "STRING",
+          "value": "\\phrasingSlurNeutral"
+        },
+        {
+          "type": "STRING",
+          "value": "\\autoBeamOn"
+        },
+        {
+          "type": "STRING",
+          "value": "\\autoBeamOff"
+        }
+      ]
+    },
+    "voice_command": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\voiceOne"
+        },
+        {
+          "type": "STRING",
+          "value": "\\voiceTwo"
+        },
+        {
+          "type": "STRING",
+          "value": "\\voiceThree"
+        },
+        {
+          "type": "STRING",
+          "value": "\\voiceFour"
+        },
+        {
+          "type": "STRING",
+          "value": "\\oneVoice"
+        }
+      ]
+    },
+    "change": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\change"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "symbol"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        }
+      ]
+    },
+    "break_command": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\break"
+        },
+        {
+          "type": "STRING",
+          "value": "\\pageBreak"
+        },
+        {
+          "type": "STRING",
+          "value": "\\noBreak"
+        }
+      ]
+    },
+    "breathe": {
+      "type": "STRING",
+      "value": "\\breathe"
+    },
+    "ottava": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\ottava"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "embedded_scm"
+        }
+      ]
+    },
+    "arpeggio": {
+      "type": "STRING",
+      "value": "\\arpeggio"
+    },
+    "glissando": {
+      "type": "STRING",
+      "value": "\\glissando"
+    },
+    "cadenza_command": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\cadenzaOn"
+        },
+        {
+          "type": "STRING",
+          "value": "\\cadenzaOff"
+        }
+      ]
+    },
+    "once": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\once"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "property_expression"
+        }
+      ]
+    },
     "music": {
       "type": "SEQ",
       "members": [
@@ -1840,8 +2386,17 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "_music_expression"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_music_expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "voice_separator"
+              }
+            ]
           }
         },
         {
@@ -1849,6 +2404,10 @@
           "value": ">>"
         }
       ]
+    },
+    "voice_separator": {
+      "type": "STRING",
+      "value": "\\\\"
     },
     "context_expression": {
       "type": "SEQ",
@@ -1931,6 +2490,26 @@
         {
           "type": "SYMBOL",
           "name": "music_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "grace"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "acciaccatura"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "appoggiatura"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "tuplet"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "times"
         }
       ]
     },
@@ -2308,6 +2887,98 @@
         },
         {
           "type": "SYMBOL",
+          "name": "time_signature"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "key_signature"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "clef"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "partial"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "grace"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "acciaccatura"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "appoggiatura"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "tuplet"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "times"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "bar_check"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "tempo"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "segno"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "coda"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "fine"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mark"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "direction_command"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "voice_command"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "change"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "break_command"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "breathe"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ottava"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "cadenza_command"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "once"
+        },
+        {
+          "type": "SYMBOL",
           "name": "comment"
         }
       ]
@@ -2456,6 +3127,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "phrasing_slur_open"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "phrasing_slur_close"
+        },
+        {
+          "type": "SYMBOL",
           "name": "beam_open"
         },
         {
@@ -2473,6 +3152,14 @@
         {
           "type": "SYMBOL",
           "name": "fingering"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "arpeggio"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "glissando"
         }
       ]
     },
@@ -2487,6 +3174,14 @@
     "slur_close": {
       "type": "STRING",
       "value": ")"
+    },
+    "phrasing_slur_open": {
+      "type": "STRING",
+      "value": "\\("
+    },
+    "phrasing_slur_close": {
+      "type": "STRING",
+      "value": "\\)"
     },
     "beam_open": {
       "type": "STRING",

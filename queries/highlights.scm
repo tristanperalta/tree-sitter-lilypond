@@ -140,3 +140,53 @@
 ; Scheme
 (scheme_list) @embedded
 (scheme_string) @string
+
+; Time/Key/Clef
+"\\time" @keyword
+"\\key" @keyword
+"\\clef" @keyword
+"\\partial" @keyword
+(key_mode) @type
+(clef_name) @type
+
+; Grace notes
+"\\grace" @keyword
+"\\acciaccatura" @keyword
+"\\appoggiatura" @keyword
+
+; Tuplets
+"\\tuplet" @keyword
+"\\times" @keyword
+
+; Bar/Navigation
+"\\bar" @keyword
+"\\tempo" @keyword
+(segno) @function.builtin
+(coda) @function.builtin
+(fine) @function.builtin
+"\\mark" @keyword
+
+; Direction commands
+(direction_command) @function.builtin
+
+; Voice commands
+(voice_command) @function.builtin
+"\\change" @keyword
+
+; Breaks
+(break_command) @keyword
+
+; Other
+(breathe) @function.builtin
+"\\ottava" @keyword
+(arpeggio) @function.builtin
+(glissando) @function.builtin
+(cadenza_command) @function.builtin
+"\\once" @keyword
+
+; Phrasing slurs
+(phrasing_slur_open) @punctuation.special
+(phrasing_slur_close) @punctuation.special
+
+; Voice separator
+(voice_separator) @punctuation.special

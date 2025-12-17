@@ -1,0 +1,471 @@
+=================
+time signature
+=================
+{ \time 4/4 c d e f }
+
+---
+(lilypond
+  (music
+    (time_signature
+      (fraction))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))
+
+=================
+time signature 6/8
+=================
+{ \time 6/8 c d e }
+
+---
+(lilypond
+  (music
+    (time_signature
+      (fraction))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))
+
+=================
+key signature major
+=================
+{ \key g \major c d e }
+
+---
+(lilypond
+  (music
+    (key_signature
+      (pitch (pitch_name))
+      (key_mode))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))
+
+=================
+key signature minor
+=================
+{ \key d \minor c d e }
+
+---
+(lilypond
+  (music
+    (key_signature
+      (pitch (pitch_name))
+      (key_mode))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))
+
+=================
+clef treble
+=================
+{ \clef treble c d e }
+
+---
+(lilypond
+  (music
+    (clef
+      (clef_name))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))
+
+=================
+clef bass
+=================
+{ \clef bass c d e }
+
+---
+(lilypond
+  (music
+    (clef
+      (clef_name))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))
+
+=================
+clef with string
+=================
+{ \clef "treble_8" c d e }
+
+---
+(lilypond
+  (music
+    (clef
+      (string))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))
+
+=================
+partial
+=================
+\partial 4 { c4 d e f }
+
+---
+(lilypond
+  (partial
+    (duration
+      (duration_value)))
+  (music
+    (note (pitch (pitch_name)) (duration (duration_value)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))
+
+=================
+grace note
+=================
+{ \grace { c16 d } e4 }
+
+---
+(lilypond
+  (music
+    (grace
+      (music
+        (note (pitch (pitch_name)) (duration (duration_value)))
+        (note (pitch (pitch_name)))))
+    (note (pitch (pitch_name)) (duration (duration_value)))))
+
+=================
+acciaccatura
+=================
+{ \acciaccatura { c8 } d4 }
+
+---
+(lilypond
+  (music
+    (acciaccatura
+      (music
+        (note (pitch (pitch_name)) (duration (duration_value)))))
+    (note (pitch (pitch_name)) (duration (duration_value)))))
+
+=================
+appoggiatura
+=================
+{ \appoggiatura { c8 } d4 }
+
+---
+(lilypond
+  (music
+    (appoggiatura
+      (music
+        (note (pitch (pitch_name)) (duration (duration_value)))))
+    (note (pitch (pitch_name)) (duration (duration_value)))))
+
+=================
+tuplet triplet
+=================
+{ \tuplet 3/2 { c8 d e } }
+
+---
+(lilypond
+  (music
+    (tuplet
+      (fraction)
+      (music
+        (note (pitch (pitch_name)) (duration (duration_value)))
+        (note (pitch (pitch_name)))
+        (note (pitch (pitch_name)))))))
+
+=================
+times legacy
+=================
+{ \times 2/3 { c8 d e } }
+
+---
+(lilypond
+  (music
+    (times
+      (fraction)
+      (music
+        (note (pitch (pitch_name)) (duration (duration_value)))
+        (note (pitch (pitch_name)))
+        (note (pitch (pitch_name)))))))
+
+=================
+bar line
+=================
+{ c d \bar "|." }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (bar_check
+      (string))))
+
+=================
+tempo metronome
+=================
+{ \tempo 4 = 120 c d e }
+
+---
+(lilypond
+  (music
+    (tempo
+      (duration
+        (duration_value))
+      (unsigned))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))
+
+=================
+tempo text
+=================
+{ \tempo "Allegro" c d e }
+
+---
+(lilypond
+  (music
+    (tempo
+      (string))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))
+
+=================
+mark
+=================
+{ \mark 1 c d e }
+
+---
+(lilypond
+  (music
+    (mark
+      (unsigned))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))
+
+=================
+segno
+=================
+{ c \segno d }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)))
+    (segno)
+    (note (pitch (pitch_name)))))
+
+=================
+coda
+=================
+{ c \coda d }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)))
+    (coda)
+    (note (pitch (pitch_name)))))
+
+=================
+fine
+=================
+{ c d \fine }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (fine)))
+
+=================
+stem direction
+=================
+{ \stemUp c \stemDown d \stemNeutral e }
+
+---
+(lilypond
+  (music
+    (direction_command)
+    (note (pitch (pitch_name)))
+    (direction_command)
+    (note (pitch (pitch_name)))
+    (direction_command)
+    (note (pitch (pitch_name)))))
+
+=================
+slur direction
+=================
+{ \slurUp c( d) \slurDown e( f) }
+
+---
+(lilypond
+  (music
+    (direction_command)
+    (note (pitch (pitch_name)) (post_event (slur_open)))
+    (note (pitch (pitch_name)) (post_event (slur_close)))
+    (direction_command)
+    (note (pitch (pitch_name)) (post_event (slur_open)))
+    (note (pitch (pitch_name)) (post_event (slur_close)))))
+
+=================
+voice commands
+=================
+<< { \voiceOne c d } \\ { \voiceTwo e f } >>
+
+---
+(lilypond
+  (simultaneous_music
+    (music
+      (voice_command)
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))
+    (voice_separator)
+    (music
+      (voice_command)
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))))
+
+=================
+phrasing slur
+=================
+{ c\( d e\) }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)) (post_event (phrasing_slur_open)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)) (post_event (phrasing_slur_close)))))
+
+=================
+break
+=================
+{ c d \break e f }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (break_command)
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))
+
+=================
+breathe
+=================
+{ c d \breathe e }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (breathe)
+    (note (pitch (pitch_name)))))
+
+=================
+arpeggio
+=================
+{ <c e g>\arpeggio }
+
+---
+(lilypond
+  (music
+    (chord
+      (chord_element (pitch (pitch_name)))
+      (chord_element (pitch (pitch_name)))
+      (chord_element (pitch (pitch_name)))
+      (post_event (arpeggio)))))
+
+=================
+glissando
+=================
+{ c\glissando d }
+
+---
+(lilypond
+  (music
+    (note (pitch (pitch_name)) (post_event (glissando)))
+    (note (pitch (pitch_name)))))
+
+=================
+ottava
+=================
+{ \ottava #1 c d e \ottava #0 }
+
+---
+(lilypond
+  (music
+    (ottava
+      (embedded_scm
+        (scheme_number (unsigned))))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (ottava
+      (embedded_scm
+        (scheme_number (unsigned))))))
+
+=================
+autobeam
+=================
+{ \autoBeamOff c8 d e f \autoBeamOn }
+
+---
+(lilypond
+  (music
+    (direction_command)
+    (note (pitch (pitch_name)) (duration (duration_value)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (direction_command)))
+
+=================
+cadenza
+=================
+{ \cadenzaOn c d e f \cadenzaOff }
+
+---
+(lilypond
+  (music
+    (cadenza_command)
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (cadenza_command)))
+
+=================
+once override
+=================
+{ \once \override Stem.color = #red c d }
+
+---
+(lilypond
+  (music
+    (once
+      (property_expression
+        (override_expression
+          (property_path (symbol) (symbol))
+          (embedded_scm (symbol)))))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))
+
+=================
+combined time key clef
+=================
+{ \clef treble \time 4/4 \key c \major c d e f }
+
+---
+(lilypond
+  (music
+    (clef (clef_name))
+    (time_signature (fraction))
+    (key_signature (pitch (pitch_name)) (key_mode))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))
+    (note (pitch (pitch_name)))))

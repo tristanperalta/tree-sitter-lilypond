@@ -23,7 +23,7 @@ Add to your nvim-treesitter configuration:
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.lilypond = {
   install_info = {
-    url = "https://github.com/YOUR_USERNAME/tree-sitter-lilypond",
+    url = "/home/tristan/workspace/tree-sitter-lilypond",
     files = { "src/parser.c" },
     branch = "main",
   },

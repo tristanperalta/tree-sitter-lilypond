@@ -40,6 +40,7 @@ module.exports = grammar({
       $.lyricsto,
       $.figure_mode,
       $.chord_mode,
+      $.partial,
       $.embedded_scm,
       $.comment,
     ),
@@ -244,6 +245,7 @@ module.exports = grammar({
         $.scheme_symbol,
         $.scheme_string,
         $.scheme_list,
+        $.symbol,  // bare symbol like #red
       ),
     ),
 
@@ -471,6 +473,144 @@ module.exports = grammar({
       $.pitch,
     ),
 
+    // Time, Key, Clef
+
+    time_signature: $ => seq(
+      '\\time',
+      $.fraction,
+    ),
+
+    key_signature: $ => seq(
+      '\\key',
+      $.pitch,
+      $.key_mode,
+    ),
+
+    key_mode: $ => choice(
+      '\\major', '\\minor',
+      '\\ionian', '\\dorian', '\\phrygian', '\\lydian',
+      '\\mixolydian', '\\aeolian', '\\locrian',
+    ),
+
+    clef: $ => seq(
+      '\\clef',
+      choice($.clef_name, $.string),
+    ),
+
+    clef_name: $ => choice(
+      'treble', 'bass', 'alto', 'tenor',
+      'soprano', 'mezzosoprano', 'baritone',
+      'varbaritone', 'subbass', 'french',
+      'percussion', 'tab', 'moderntab',
+    ),
+
+    partial: $ => seq(
+      '\\partial',
+      $.duration,
+    ),
+
+    // Grace Notes
+
+    grace: $ => seq(
+      '\\grace',
+      $._contextable_music,
+    ),
+
+    acciaccatura: $ => seq(
+      '\\acciaccatura',
+      $._contextable_music,
+    ),
+
+    appoggiatura: $ => seq(
+      '\\appoggiatura',
+      $._contextable_music,
+    ),
+
+    // Tuplets
+
+    tuplet: $ => seq(
+      '\\tuplet',
+      $.fraction,
+      optional($.duration),
+      $._contextable_music,
+    ),
+
+    times: $ => seq(
+      '\\times',
+      $.fraction,
+      $._contextable_music,
+    ),
+
+    // Bar Lines and Navigation
+
+    bar_check: $ => seq(
+      '\\bar',
+      $.string,
+    ),
+
+    tempo: $ => choice(
+      seq('\\tempo', $.duration, '=', $.unsigned),
+      seq('\\tempo', $.string, optional(seq($.duration, '=', $.unsigned))),
+    ),
+
+    segno: $ => '\\segno',
+    coda: $ => '\\coda',
+    fine: $ => '\\fine',
+
+    mark: $ => seq(
+      '\\mark',
+      choice($.unsigned, $.string, '\\default'),
+    ),
+
+    // Direction Overrides
+
+    direction_command: $ => choice(
+      '\\stemUp', '\\stemDown', '\\stemNeutral',
+      '\\slurUp', '\\slurDown', '\\slurNeutral',
+      '\\tieUp', '\\tieDown', '\\tieNeutral',
+      '\\phrasingSlurUp', '\\phrasingSlurDown', '\\phrasingSlurNeutral',
+      '\\autoBeamOn', '\\autoBeamOff',
+    ),
+
+    // Voice Commands
+
+    voice_command: $ => choice(
+      '\\voiceOne', '\\voiceTwo', '\\voiceThree', '\\voiceFour',
+      '\\oneVoice',
+    ),
+
+    change: $ => seq(
+      '\\change',
+      $.symbol,
+      '=',
+      $.string,
+    ),
+
+    // Breaks and Other
+
+    break_command: $ => choice(
+      '\\break', '\\pageBreak', '\\noBreak',
+    ),
+
+    breathe: $ => '\\breathe',
+
+    ottava: $ => seq(
+      '\\ottava',
+      $.embedded_scm,
+    ),
+
+    arpeggio: $ => '\\arpeggio',
+    glissando: $ => '\\glissando',
+
+    cadenza_command: $ => choice(
+      '\\cadenzaOn', '\\cadenzaOff',
+    ),
+
+    once: $ => seq(
+      '\\once',
+      $.property_expression,
+    ),
+
     // Music
 
     music: $ => seq(
@@ -481,9 +621,14 @@ module.exports = grammar({
 
     simultaneous_music: $ => seq(
       '<<',
-      repeat($._music_expression),
+      repeat(choice(
+        $._music_expression,
+        $.voice_separator,
+      )),
       '>>',
     ),
+
+    voice_separator: $ => '\\\\',
 
     // Context
 
@@ -501,6 +646,11 @@ module.exports = grammar({
       $.context_expression,
       $.repeat_expression,
       $.music_function,
+      $.grace,
+      $.acciaccatura,
+      $.appoggiatura,
+      $.tuplet,
+      $.times,
     ),
 
     context_modification: $ => seq(
@@ -610,6 +760,30 @@ module.exports = grammar({
       $.addlyrics,
       $.lyricsto,
       $.markup,
+      // M7: Music Commands
+      $.time_signature,
+      $.key_signature,
+      $.clef,
+      $.partial,
+      $.grace,
+      $.acciaccatura,
+      $.appoggiatura,
+      $.tuplet,
+      $.times,
+      $.bar_check,
+      $.tempo,
+      $.segno,
+      $.coda,
+      $.fine,
+      $.mark,
+      $.direction_command,
+      $.voice_command,
+      $.change,
+      $.break_command,
+      $.breathe,
+      $.ottava,
+      $.cadenza_command,
+      $.once,
       $.comment,
     ),
 
@@ -649,16 +823,22 @@ module.exports = grammar({
       $.tie,
       $.slur_open,
       $.slur_close,
+      $.phrasing_slur_open,
+      $.phrasing_slur_close,
       $.beam_open,
       $.beam_close,
       $.articulation,
       $.dynamic,
       $.fingering,
+      $.arpeggio,
+      $.glissando,
     ),
 
     tie: $ => '~',
     slur_open: $ => '(',
     slur_close: $ => ')',
+    phrasing_slur_open: $ => '\\(',
+    phrasing_slur_close: $ => '\\)',
     beam_open: $ => '[',
     beam_close: $ => ']',
 
