@@ -1,0 +1,226 @@
+=================
+grace single note
+=================
+{ \grace c'8 d4 }
+
+---
+(lilypond
+  (music
+    (grace
+      (note
+        (pitch (pitch_name) (octave (octave_up)))
+        (duration (duration_value))))
+    (note
+      (pitch (pitch_name))
+      (duration (duration_value)))))
+
+=================
+acciaccatura single note
+=================
+{ \acciaccatura d'16 e4 }
+
+---
+(lilypond
+  (music
+    (acciaccatura
+      (note
+        (pitch (pitch_name) (octave (octave_up)))
+        (duration (duration_value))))
+    (note
+      (pitch (pitch_name))
+      (duration (duration_value)))))
+
+=================
+forced accidental
+=================
+{ cis'! }
+
+---
+(lilypond
+  (music
+    (note
+      (pitch (pitch_name) (accidental) (octave (octave_up)))
+      (post_event (accidental_modifier)))))
+
+=================
+cautionary accidental
+=================
+{ des'? }
+
+---
+(lilypond
+  (music
+    (note
+      (pitch (pitch_name) (accidental) (octave (octave_up)))
+      (post_event (accidental_modifier)))))
+
+=================
+forced with post-event string
+=================
+{ dis!^"force" }
+
+---
+(lilypond
+  (music
+    (note
+      (pitch (pitch_name) (accidental))
+      (post_event (accidental_modifier))
+      (post_event
+        (post_event_string
+          (script_direction)
+          (string))))))
+
+=================
+post-event string above
+=================
+{ c^"text" }
+
+---
+(lilypond
+  (music
+    (note
+      (pitch (pitch_name))
+      (post_event
+        (post_event_string
+          (script_direction)
+          (string))))))
+
+=================
+post-event string below
+=================
+{ c_"below" }
+
+---
+(lilypond
+  (music
+    (note
+      (pitch (pitch_name))
+      (post_event
+        (post_event_string
+          (script_direction)
+          (string))))))
+
+=================
+post-event markup
+=================
+{ c-\markup { text } }
+
+---
+(lilypond
+  (music
+    (note
+      (pitch (pitch_name))
+      (post_event
+        (post_event_markup
+          (script_direction)
+          (markup
+            (markup_block
+              (markup_word))))))))
+
+=================
+dimension in paper
+=================
+\paper { line-width = 10\cm }
+
+---
+(lilypond
+  (paper_block
+    (assignment
+      (assignment_id (symbol))
+      (number_expression
+        (number_term
+          (number_factor
+            (dimension
+              (unsigned)
+              (dimension_unit))))))))
+
+=================
+dimension millimeters
+=================
+\paper { indent = 5\mm }
+
+---
+(lilypond
+  (paper_block
+    (assignment
+      (assignment_id (symbol))
+      (number_expression
+        (number_term
+          (number_factor
+            (dimension
+              (unsigned)
+              (dimension_unit))))))))
+
+=================
+repeat tie
+=================
+{ c4\repeatTie }
+
+---
+(lilypond
+  (music
+    (note
+      (pitch (pitch_name))
+      (duration (duration_value))
+      (post_event (repeat_tie)))))
+
+=================
+tag command
+=================
+\tag X { c d e }
+
+---
+(lilypond
+  (tag_command
+    (symbol)
+    (music
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))))
+
+=================
+keepWithTag command
+=================
+\keepWithTag Y { c d }
+
+---
+(lilypond
+  (tag_command
+    (symbol)
+    (music
+      (note (pitch (pitch_name)))
+      (note (pitch (pitch_name))))))
+
+=================
+contracted A-flat pitch
+=================
+{ as }
+
+---
+(lilypond
+  (music
+    (note
+      (pitch (pitch_name)))))
+
+=================
+contracted E-flat pitch
+=================
+{ es }
+
+---
+(lilypond
+  (music
+    (note
+      (pitch (pitch_name)))))
+
+=================
+key with A-flat
+=================
+{ \key as \major }
+
+---
+(lilypond
+  (music
+    (key_signature
+      (pitch (pitch_name))
+      (key_mode))))

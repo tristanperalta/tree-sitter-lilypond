@@ -70,6 +70,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "tag_command"
+        },
+        {
+          "type": "SYMBOL",
           "name": "markup"
         },
         {
@@ -721,6 +725,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "dimension"
+        },
+        {
+          "type": "SYMBOL",
           "name": "bare_number"
         }
       ]
@@ -739,6 +747,49 @@
         {
           "type": "SYMBOL",
           "name": "fraction"
+        }
+      ]
+    },
+    "dimension": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "unsigned"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "real"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dimension_unit"
+        }
+      ]
+    },
+    "dimension_unit": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\cm"
+        },
+        {
+          "type": "STRING",
+          "value": "\\mm"
+        },
+        {
+          "type": "STRING",
+          "value": "\\in"
+        },
+        {
+          "type": "STRING",
+          "value": "\\pt"
         }
       ]
     },
@@ -2330,6 +2381,10 @@
       "type": "STRING",
       "value": "\\glissando"
     },
+    "repeat_tie": {
+      "type": "STRING",
+      "value": "\\repeatTie"
+    },
     "cadenza_command": {
       "type": "CHOICE",
       "members": [
@@ -2493,6 +2548,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "tag_command"
+        },
+        {
+          "type": "SYMBOL",
           "name": "grace"
         },
         {
@@ -2510,6 +2569,14 @@
         {
           "type": "SYMBOL",
           "name": "times"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "note"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "chord"
         }
       ]
     },
@@ -2794,6 +2861,96 @@
       ]
     },
     "music_function": {
+      "type": "PREC_RIGHT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "\\relative"
+              },
+              {
+                "type": "STRING",
+                "value": "\\transpose"
+              },
+              {
+                "type": "STRING",
+                "value": "\\fixed"
+              },
+              {
+                "type": "STRING",
+                "value": "\\absolute"
+              }
+            ]
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "pitch"
+            }
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_music_block"
+          }
+        ]
+      }
+    },
+    "_music_block": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "music"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "simultaneous_music"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "context_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "repeat_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "music_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "tag_command"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "grace"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "acciaccatura"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "appoggiatura"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "tuplet"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "times"
+        }
+      ]
+    },
+    "tag_command": {
       "type": "SEQ",
       "members": [
         {
@@ -2801,28 +2958,21 @@
           "members": [
             {
               "type": "STRING",
-              "value": "\\relative"
+              "value": "\\tag"
             },
             {
               "type": "STRING",
-              "value": "\\transpose"
+              "value": "\\keepWithTag"
             },
             {
               "type": "STRING",
-              "value": "\\fixed"
-            },
-            {
-              "type": "STRING",
-              "value": "\\absolute"
+              "value": "\\removeWithTag"
             }
           ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "pitch"
-          }
+          "type": "SYMBOL",
+          "name": "symbol"
         },
         {
           "type": "SYMBOL",
@@ -2872,6 +3022,10 @@
         {
           "type": "SYMBOL",
           "name": "music_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "tag_command"
         },
         {
           "type": "SYMBOL",
@@ -3160,6 +3314,61 @@
         {
           "type": "SYMBOL",
           "name": "glissando"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "repeat_tie"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "accidental_modifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "post_event_string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "post_event_markup"
+        }
+      ]
+    },
+    "accidental_modifier": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "!"
+        },
+        {
+          "type": "STRING",
+          "value": "?"
+        }
+      ]
+    },
+    "post_event_string": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "script_direction"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        }
+      ]
+    },
+    "post_event_markup": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "script_direction"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "markup"
         }
       ]
     },
@@ -3552,7 +3761,7 @@
     },
     "pitch_name": {
       "type": "PATTERN",
-      "value": "[a-g]"
+      "value": "[a-g]|as|es"
     },
     "accidental": {
       "type": "CHOICE",

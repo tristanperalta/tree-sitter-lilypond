@@ -16,6 +16,10 @@
           "named": true
         },
         {
+          "type": "chord",
+          "named": true
+        },
+        {
           "type": "context_expression",
           "named": true
         },
@@ -32,11 +36,19 @@
           "named": true
         },
         {
+          "type": "note",
+          "named": true
+        },
+        {
           "type": "repeat_expression",
           "named": true
         },
         {
           "type": "simultaneous_music",
+          "named": true
+        },
+        {
+          "type": "tag_command",
           "named": true
         },
         {
@@ -52,6 +64,11 @@
   },
   {
     "type": "accidental",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "accidental_modifier",
     "named": true,
     "fields": {}
   },
@@ -91,6 +108,10 @@
           "named": true
         },
         {
+          "type": "chord",
+          "named": true
+        },
+        {
           "type": "context_expression",
           "named": true
         },
@@ -107,11 +128,19 @@
           "named": true
         },
         {
+          "type": "note",
+          "named": true
+        },
+        {
           "type": "repeat_expression",
           "named": true
         },
         {
           "type": "simultaneous_music",
+          "named": true
+        },
+        {
+          "type": "tag_command",
           "named": true
         },
         {
@@ -142,6 +171,10 @@
           "named": true
         },
         {
+          "type": "chord",
+          "named": true
+        },
+        {
           "type": "context_expression",
           "named": true
         },
@@ -158,11 +191,19 @@
           "named": true
         },
         {
+          "type": "note",
+          "named": true
+        },
+        {
           "type": "repeat_expression",
           "named": true
         },
         {
           "type": "simultaneous_music",
+          "named": true
+        },
+        {
+          "type": "tag_command",
           "named": true
         },
         {
@@ -683,6 +724,10 @@
           "named": true
         },
         {
+          "type": "chord",
+          "named": true
+        },
+        {
           "type": "context_expression",
           "named": true
         },
@@ -703,6 +748,10 @@
           "named": true
         },
         {
+          "type": "note",
+          "named": true
+        },
+        {
           "type": "repeat_expression",
           "named": true
         },
@@ -716,6 +765,10 @@
         },
         {
           "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "tag_command",
           "named": true
         },
         {
@@ -755,6 +808,34 @@
         }
       ]
     }
+  },
+  {
+    "type": "dimension",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dimension_unit",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "unsigned",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dimension_unit",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "direction_command",
@@ -1013,6 +1094,10 @@
           "named": true
         },
         {
+          "type": "chord",
+          "named": true
+        },
+        {
           "type": "context_expression",
           "named": true
         },
@@ -1029,11 +1114,19 @@
           "named": true
         },
         {
+          "type": "note",
+          "named": true
+        },
+        {
           "type": "repeat_expression",
           "named": true
         },
         {
           "type": "simultaneous_music",
+          "named": true
+        },
+        {
+          "type": "tag_command",
           "named": true
         },
         {
@@ -1217,6 +1310,10 @@
         },
         {
           "type": "simultaneous_music",
+          "named": true
+        },
+        {
+          "type": "tag_command",
           "named": true
         },
         {
@@ -1618,6 +1715,10 @@
           "named": true
         },
         {
+          "type": "tag_command",
+          "named": true
+        },
+        {
           "type": "tempo",
           "named": true
         },
@@ -1685,6 +1786,10 @@
           "named": true
         },
         {
+          "type": "tag_command",
+          "named": true
+        },
+        {
           "type": "times",
           "named": true
         },
@@ -1747,6 +1852,10 @@
       "types": [
         {
           "type": "bare_number",
+          "named": true
+        },
+        {
+          "type": "dimension",
           "named": true
         },
         {
@@ -1931,6 +2040,10 @@
       "required": true,
       "types": [
         {
+          "type": "accidental_modifier",
+          "named": true
+        },
+        {
           "type": "arpeggio",
           "named": true
         },
@@ -1967,6 +2080,18 @@
           "named": true
         },
         {
+          "type": "post_event_markup",
+          "named": true
+        },
+        {
+          "type": "post_event_string",
+          "named": true
+        },
+        {
+          "type": "repeat_tie",
+          "named": true
+        },
+        {
           "type": "slur_close",
           "named": true
         },
@@ -1976,6 +2101,44 @@
         },
         {
           "type": "tie",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "post_event_markup",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "markup",
+          "named": true
+        },
+        {
+          "type": "script_direction",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "post_event_string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "script_direction",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         }
       ]
@@ -2044,6 +2207,10 @@
           "named": true
         },
         {
+          "type": "chord",
+          "named": true
+        },
+        {
           "type": "context_expression",
           "named": true
         },
@@ -2060,6 +2227,10 @@
           "named": true
         },
         {
+          "type": "note",
+          "named": true
+        },
+        {
           "type": "repeat_expression",
           "named": true
         },
@@ -2069,6 +2240,10 @@
         },
         {
           "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "tag_command",
           "named": true
         },
         {
@@ -2449,6 +2624,10 @@
           "named": true
         },
         {
+          "type": "tag_command",
+          "named": true
+        },
+        {
           "type": "tempo",
           "named": true
         },
@@ -2505,6 +2684,73 @@
     "fields": {}
   },
   {
+    "type": "tag_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "acciaccatura",
+          "named": true
+        },
+        {
+          "type": "appoggiatura",
+          "named": true
+        },
+        {
+          "type": "chord",
+          "named": true
+        },
+        {
+          "type": "context_expression",
+          "named": true
+        },
+        {
+          "type": "grace",
+          "named": true
+        },
+        {
+          "type": "music",
+          "named": true
+        },
+        {
+          "type": "music_function",
+          "named": true
+        },
+        {
+          "type": "note",
+          "named": true
+        },
+        {
+          "type": "repeat_expression",
+          "named": true
+        },
+        {
+          "type": "simultaneous_music",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "tag_command",
+          "named": true
+        },
+        {
+          "type": "times",
+          "named": true
+        },
+        {
+          "type": "tuplet",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "tempo",
     "named": true,
     "fields": {},
@@ -2559,6 +2805,10 @@
           "named": true
         },
         {
+          "type": "chord",
+          "named": true
+        },
+        {
           "type": "context_expression",
           "named": true
         },
@@ -2579,11 +2829,19 @@
           "named": true
         },
         {
+          "type": "note",
+          "named": true
+        },
+        {
           "type": "repeat_expression",
           "named": true
         },
         {
           "type": "simultaneous_music",
+          "named": true
+        },
+        {
+          "type": "tag_command",
           "named": true
         },
         {
@@ -2614,6 +2872,10 @@
           "named": true
         },
         {
+          "type": "chord",
+          "named": true
+        },
+        {
           "type": "context_expression",
           "named": true
         },
@@ -2638,11 +2900,19 @@
           "named": true
         },
         {
+          "type": "note",
+          "named": true
+        },
+        {
           "type": "repeat_expression",
           "named": true
         },
         {
           "type": "simultaneous_music",
+          "named": true
+        },
+        {
+          "type": "tag_command",
           "named": true
         },
         {
@@ -2813,6 +3083,10 @@
     "named": false
   },
   {
+    "type": "?",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -2942,6 +3216,10 @@
   },
   {
     "type": "\\clef",
+    "named": false
+  },
+  {
+    "type": "\\cm",
     "named": false
   },
   {
@@ -3085,6 +3363,10 @@
     "named": false
   },
   {
+    "type": "\\in",
+    "named": false
+  },
+  {
     "type": "\\ionian",
     "named": false
   },
@@ -3094,6 +3376,10 @@
   },
   {
     "type": "\\justify",
+    "named": false
+  },
+  {
+    "type": "\\keepWithTag",
     "named": false
   },
   {
@@ -3186,6 +3472,10 @@
   },
   {
     "type": "\\mixolydian",
+    "named": false
+  },
+  {
+    "type": "\\mm",
     "named": false
   },
   {
@@ -3305,6 +3595,10 @@
     "named": false
   },
   {
+    "type": "\\pt",
+    "named": false
+  },
+  {
     "type": "\\raise",
     "named": false
   },
@@ -3314,6 +3608,10 @@
   },
   {
     "type": "\\remove",
+    "named": false
+  },
+  {
+    "type": "\\removeWithTag",
     "named": false
   },
   {
@@ -3422,6 +3720,10 @@
   },
   {
     "type": "\\super",
+    "named": false
+  },
+  {
+    "type": "\\tag",
     "named": false
   },
   {
@@ -3674,6 +3976,10 @@
   },
   {
     "type": "real",
+    "named": true
+  },
+  {
+    "type": "repeat_tie",
     "named": true
   },
   {

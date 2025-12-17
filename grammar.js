@@ -34,6 +34,7 @@ module.exports = grammar({
       $.context_expression,
       $.repeat_expression,
       $.music_function,
+      $.tag_command,
       $.markup,
       $.lyric_mode,
       $.addlyrics,
@@ -218,6 +219,7 @@ module.exports = grammar({
 
     number_factor: $ => choice(
       prec(PREC.UNARY, seq('-', $.number_factor)),
+      $.dimension,
       $.bare_number,
     ),
 
@@ -225,6 +227,15 @@ module.exports = grammar({
       $.unsigned,
       $.real,
       $.fraction,
+    ),
+
+    dimension: $ => seq(
+      choice($.unsigned, $.real),
+      $.dimension_unit,
+    ),
+
+    dimension_unit: $ => choice(
+      '\\cm', '\\mm', '\\in', '\\pt',
     ),
 
     // Basic tokens
@@ -601,6 +612,7 @@ module.exports = grammar({
 
     arpeggio: $ => '\\arpeggio',
     glissando: $ => '\\glissando',
+    repeat_tie: $ => '\\repeatTie',
 
     cadenza_command: $ => choice(
       '\\cadenzaOn', '\\cadenzaOff',
@@ -646,11 +658,14 @@ module.exports = grammar({
       $.context_expression,
       $.repeat_expression,
       $.music_function,
+      $.tag_command,
       $.grace,
       $.acciaccatura,
       $.appoggiatura,
       $.tuplet,
       $.times,
+      $.note,
+      $.chord,
     ),
 
     context_modification: $ => seq(
@@ -735,7 +750,7 @@ module.exports = grammar({
 
     // Music functions
 
-    music_function: $ => seq(
+    music_function: $ => prec.right(1, seq(
       choice(
         '\\relative',
         '\\transpose',
@@ -743,6 +758,28 @@ module.exports = grammar({
         '\\absolute',
       ),
       repeat($.pitch),
+      $._music_block,
+    )),
+
+    // Music block - like _contextable_music but excludes single notes
+    // (to avoid ambiguity with pitch arguments in music_function)
+    _music_block: $ => choice(
+      $.music,
+      $.simultaneous_music,
+      $.context_expression,
+      $.repeat_expression,
+      $.music_function,
+      $.tag_command,
+      $.grace,
+      $.acciaccatura,
+      $.appoggiatura,
+      $.tuplet,
+      $.times,
+    ),
+
+    tag_command: $ => seq(
+      choice('\\tag', '\\keepWithTag', '\\removeWithTag'),
+      $.symbol,
       $._contextable_music,
     ),
 
@@ -757,6 +794,7 @@ module.exports = grammar({
       $.property_expression,
       $.repeat_expression,
       $.music_function,
+      $.tag_command,
       $.addlyrics,
       $.lyricsto,
       $.markup,
@@ -832,6 +870,22 @@ module.exports = grammar({
       $.fingering,
       $.arpeggio,
       $.glissando,
+      $.repeat_tie,
+      $.accidental_modifier,
+      $.post_event_string,
+      $.post_event_markup,
+    ),
+
+    accidental_modifier: $ => choice('!', '?'),
+
+    post_event_string: $ => seq(
+      $.script_direction,
+      $.string,
+    ),
+
+    post_event_markup: $ => seq(
+      $.script_direction,
+      $.markup,
     ),
 
     tie: $ => '~',
@@ -926,7 +980,8 @@ module.exports = grammar({
       optional($.octave),
     ),
 
-    pitch_name: $ => /[a-g]/,
+    // Standard pitch names plus contracted flats (as = A-flat, es = E-flat)
+    pitch_name: $ => /[a-g]|as|es/,
 
     accidental: $ => choice(
       'isis',

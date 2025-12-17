@@ -190,3 +190,13 @@
 
 ; Voice separator
 (voice_separator) @punctuation.special
+
+; M8: Regression fixes
+(accidental_modifier) @operator
+(repeat_tie) @function.builtin
+(dimension_unit) @type
+
+; Tag commands
+"\\tag" @keyword
+"\\keepWithTag" @keyword
+"\\removeWithTag" @keyword
